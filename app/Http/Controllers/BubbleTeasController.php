@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\BubbleTea;
 
 class BubbleTeasController extends Controller
 {
@@ -14,6 +15,7 @@ class BubbleTeasController extends Controller
   public function index()
   {
       echo "hey there";
+      return BubbleTea::all();
   }
 
   /**
@@ -34,7 +36,22 @@ class BubbleTeasController extends Controller
    */
   public function store(Request $request)
   {
-      //
+    $this->validate($request, [
+      'name' => 'required|max:50',
+      'address' => 'required|100',
+      'phone' => 'required|14',
+      'open_times' => 'required|255',
+      'additional_info' => 'required|255',
+      'global_note' => 'required|integer',
+      'longitude' => 'required|numeric',
+      'latitude' => 'required|numeric',
+      'borough' => 'required|integer',
+      'price_range' => 'required|50'
+    ]);
+
+    $bubbletea = BubbleTea::create($request->all());
+
+    return response()->json($bubbletea, 201);
   }
 
   /**
@@ -43,9 +60,11 @@ class BubbleTeasController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(BubbleTea $bubbletea)
   {
     echo "hey there, specific bbtea page";
+    $BubbleTea = BubbleTea::find($bubbletea->id);
+    return $BubbleTea;
   }
 
   /**
@@ -66,9 +85,11 @@ class BubbleTeasController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, BubbleTea $bubbletea)
   {
-      //
+      $bubbletea->update($request->all());
+
+      return response()->json($bubbletea, 200);
   }
 
   /**
@@ -77,8 +98,10 @@ class BubbleTeasController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(BubbleTea $bubbletea)
   {
-      //
+      $bubbletea->delete();
+
+      return response()->json(null, 204);
   }
 }
