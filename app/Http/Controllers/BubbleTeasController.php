@@ -14,8 +14,7 @@ class BubbleTeasController extends Controller
    */
   public function index()
   {
-      echo "hey there";
-      return BubbleTea::all();
+    return BubbleTea::all();
   }
 
   /**
@@ -62,7 +61,6 @@ class BubbleTeasController extends Controller
    */
   public function show(BubbleTea $bubbletea)
   {
-    echo "hey there, specific bbtea page";
     $BubbleTea = BubbleTea::find($bubbletea->id);
     return $BubbleTea;
   }
@@ -87,9 +85,8 @@ class BubbleTeasController extends Controller
    */
   public function update(Request $request, BubbleTea $bubbletea)
   {
-      $bubbletea->update($request->all());
-
-      return response()->json($bubbletea, 200);
+    $bubbletea->update($request->all());
+    return response()->json($bubbletea, 200);
   }
 
   /**
@@ -100,8 +97,7 @@ class BubbleTeasController extends Controller
    */
   public function destroy(BubbleTea $bubbletea)
   {
-      $bubbletea->delete();
-
-      return response()->json(null, 204);
+    $bubbletea->delete();
+    return response()->json(null, 204);
   }
 }
