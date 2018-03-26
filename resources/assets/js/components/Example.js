@@ -11,7 +11,7 @@ export default class Example extends Component {
                             <div className="card-header">Example Component</div>
 
                             <div className="card-body">
-                                I’m an example component!
+                                Im an example component!
                             </div>
                         </div>
                     </div>

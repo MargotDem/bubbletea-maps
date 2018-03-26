@@ -14059,8 +14059,8 @@ __webpack_require__(19);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+console.log('heyyyy');
 __webpack_require__(43);
-// import Example from './components/Main'
 
 /***/ }),
 /* 19 */
@@ -36287,7 +36287,7 @@ var Example = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'div',
                                 { className: 'card-body' },
-                                'I\u2019m an example component!'
+                                'Im an example component!'
                             )
                         )
                     )
