@@ -4,12 +4,14 @@
   height: 35px;
   font-size: 20px;
   outline: none !important;
+  border: none;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
   &:hover {
     cursor: pointer;
   }
 }
 
 .myRoundButton_color {
-  background: whitesmoke;
-  color: $dark-background-blue;
+  background: $lighter-background-blue;
+  color: whitesmoke;
 }
