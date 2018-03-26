@@ -1,0 +1,15 @@
+.myRoundButton {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  outline: none !important;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.myRoundButton_color {
+  background: whitesmoke;
+  color: $dark-background-blue;
+}

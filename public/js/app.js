@@ -62725,37 +62725,109 @@ var Sidebar = function (_BaseContainer) {
   }
 
   _createClass(Sidebar, [{
+    key: 'handleOpenClick',
+    value: function handleOpenClick() {
+      setTimeout(function () {
+        document.getElementById('sidebar-bottom').className = 'sidebar-bottom sidebar-bottom_show';
+        document.getElementById('sidebar-top').className = 'sidebar-top sidebar-top_show';
+      }, 500);
+      document.getElementById('sidebar_right').className = 'sidebar sidebar_right sidebar_right_show';
+    }
+  }, {
+    key: 'handleCloseClick',
+    value: function handleCloseClick() {
+      setTimeout(function () {
+        document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
+      }, 500);
+      document.getElementById('sidebar-bottom').className = 'sidebar-bottom';
+      document.getElementById('sidebar-top').className = 'sidebar-top';
+    }
+  }, {
     key: 'renderMe',
     value: function renderMe(t) {
+      var _this2 = this;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'sidebar' },
+        { className: 'sidebarContainer' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'sidebar-top' },
+          { className: 'sidebar' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            { className: 'sidebar-text sidebar-text.title' },
-            'BubbleTea Maps'
+            'div',
+            { className: 'sidebar-top' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text sidebar-text_title' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'a',
+                { href: '' },
+                'BubbleTea Maps'
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text', onClick: function onClick() {
+                  _this2.handleOpenClick();
+                } },
+              'Search'
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            { className: 'sidebar-text' },
-            'Recherche'
+            'div',
+            { className: 'sidebar-bottom' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'a',
+                { href: '', rel: 'noopener noreferrer' },
+                'Contact'
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'a',
+                { href: '', rel: 'noopener noreferrer', target: '_blank' },
+                'Margot de Maulmont'
+              )
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'sidebar-bottom' },
+          { id: 'sidebar_right', className: 'sidebar sidebar_right' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            { className: 'sidebar-text' },
-            'Contact'
+            'div',
+            { id: 'sidebar-top', className: 'sidebar-top' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { className: 'myRoundButton myRoundButton_color', onClick: function onClick() {
+                  _this2.handleCloseClick();
+                } },
+              '\xD7'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text sidebar-text_title' },
+              'Criterion'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text' },
+              'Borough'
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'span',
-            { className: 'sidebar-text' },
-            'Margot de Maulmont'
+            'div',
+            { id: 'sidebar-bottom', className: 'sidebar-bottom' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text' },
+              'See all bubbleteas'
+            )
           )
         )
       );
