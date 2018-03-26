@@ -1,7 +1,7 @@
 .sidebar {
   background-color: $lighter-background-blue;
   height: 100vh;
-  width: 300px;
+  width: 250px;
   position: fixed;
   left: 0px;
   display: flex;
@@ -55,7 +55,7 @@
 .sidebar_right {
   background-color: whitesmoke;
   position: relative;
-  left: 300px;
+  left: 250px;
   height: 100vh;
   width: 0px;
   display: flex;
@@ -105,7 +105,7 @@
 }
 
 .sidebar_right_show {
-  width: 300px;
+  width: 230px;
   padding: 30px 20px;
 }
 
@@ -118,5 +118,5 @@
 }
 
 .sidebar-animation_show {
-  width: 300px;
+  width: 250px;
 }
