@@ -10,7 +10,7 @@
     </head>
     <body>
     <h2 style="text-align: center"> Laravel and React application </h2>
-        <div id="example"></div>
+        <div id="root"></div>
         <script src="{{asset('js/app.js')}}" ></script>
     </body>
 </html>

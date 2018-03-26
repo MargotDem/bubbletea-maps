@@ -1,0 +1,17 @@
+html {
+  box-sizing: border-box;
+}
+
+::selection {
+  color: whitesmoke;
+  background: #39ba69;
+}
+
+::-moz-selection {
+color: whitesmoke;
+background: #39ba69;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
