@@ -26,7 +26,7 @@ export default class Sidebar extends BaseContainer {
         <div className='sidebar'>
           <div className='sidebar-top'>
             <span className='sidebar-text sidebar-text_title'><a href=''>BubbleTea Maps</a></span>
-            <span className='sidebar-text' onClick={() => { this.handleOpenClick() }}>Search</span>
+            <span className='sidebar-text' onClick={() => { this.handleOpenClick() }}>Test</span>
           </div>
           <div className='sidebar-bottom'>
             <span className='sidebar-text'><a href='' rel='noopener noreferrer'>Contact</a></span>
