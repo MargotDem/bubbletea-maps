@@ -13,36 +13,18 @@ export default class SearchResult extends BaseContainer {
   }
 
   componentDidMount () {
-    fetch('http://localhost:8888/public/api/bubbleteas'
-    // , {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   }
-
-    // }
-  )
-      .then(response => {
-        return response.json()
-        // const test = response.json()
-        // console.log(test)
-      })
-      .then(bubbleteas => {
-      // Fetched product is stored in the state
-        this.setState({ bubbleteas })
-      })
+    axios.get('http://localhost:8888/public/api/bubbleteas', {
+      params: {
+        borough: 1
+      }
+    })
+    .then(bubbleteas => {
+      this.setState({ bubbleteas: bubbleteas.data })
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
   }
-
-  // componentDidMount () {
-  //        axios.get('http://localhost:8000/bubbleteas')
-  //        .then(response => {
-  //          this.setState({ bubbleteas: response.data })
-  //        })
-  //        .catch(function (error) {
-  //          console.log(error)
-  //        })
-  //      }
-
 
   renderProducts () {
     return this.state.bubbleteas.map(bubbletea => {
@@ -73,3 +55,24 @@ export default class SearchResult extends BaseContainer {
 //     { this.renderProducts() }
 //   </ul>
 // </div>
+
+// componentDidMount () {
+//   fetch('http://localhost:8888/public/api/bubbleteas'
+//   // , {
+//   //   headers: {
+//   //     'Content-Type': 'application/json',
+//   //     'Accept': 'application/json'
+//   //   }
+//
+//   // }
+// )
+//     .then(response => {
+//       return response.json()
+//       // const test = response.json()
+//       // console.log(test)
+//     })
+//     .then(bubbleteas => {
+//     // Fetched product is stored in the state
+//       this.setState({ bubbleteas })
+//     })
+// }

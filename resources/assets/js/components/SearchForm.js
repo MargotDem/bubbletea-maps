@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import axios from 'axios'
-
 export default class SearchForm extends Component {
   constructor (props) {
     super(props)
@@ -9,22 +7,14 @@ export default class SearchForm extends Component {
       'searchFormBorough': 1
     })
     this.handleInputChange = this.handleInputChange.bind(this)
-    this.sendRequest = this.sendRequest.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleCloseClick () {
     document.getElementById('searchForm').className = 'searchForm'
   }
 
-  async sendRequest (e) {
-    // console.log(this.state)
-    // let body = this.setState
-    // e.preventDefault()
-    // try {
-    //   await axios.post('http://localhost:8888/public/bubbleteas', body)
-    // } catch (error) {
-    //   console.log(error)
-    // }
+  handleSubmit (e) {
     window.location = ('#/bubbleteas#' + this.state.searchFormBorough)
     document.getElementById('searchForm').className = 'searchForm'
   }
@@ -53,7 +43,7 @@ export default class SearchForm extends Component {
           </form>
         </section>
         <section className='searchForm-bottom'>
-          <button className='myButton myButton_red' onClick={this.sendRequest}>Rechercher</button>
+          <button className='myButton myButton_red' onClick={this.handleSubmit}>Rechercher</button>
         </section>
       </div>
     )
