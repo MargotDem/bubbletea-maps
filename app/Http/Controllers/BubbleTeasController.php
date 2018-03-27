@@ -15,6 +15,7 @@ class BubbleTeasController extends Controller
   public function index()
   {
     return BubbleTea::all();
+    // return response(['Product 1', 'Product 2', 'Product 3'],200);
   }
 
   /**

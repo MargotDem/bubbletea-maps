@@ -12,10 +12,12 @@
 // Components
 @import "components/sidebar";
 @import "components/myButtons";
+@import "components/searchForm";
 
 // containers
 @import "containers/app";
 @import "containers/home";
+@import "containers/searchResult";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';

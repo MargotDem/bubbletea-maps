@@ -168,6 +168,45 @@
   color: whitesmoke;
 }
 
+.searchForm {
+  position: absolute;
+  height: 75%;
+  width: 40%;
+  background: whitesmoke;
+  -webkit-box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  border: 1px solid lightgray;
+}
+
+.searchForm .myRoundButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.searchForm section {
+  height: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.searchForm_show {
+  opacity: 1;
+  visibility: visible;
+}
+
 .appContainer {
   width: 100%;
 }
@@ -210,29 +249,8 @@
   text-shadow: 0 2px 18px rgba(34, 34, 34, 0.6);
 }
 
-.searchForm {
-  position: absolute;
-  height: 75%;
-  width: 40%;
-  background: whitesmoke;
-  -webkit-box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  opacity: 0;
-  visibility: hidden;
-  border: 1px solid lightgray;
-}
-
-.searchForm .myRoundButton {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.searchForm section {
-  height: 50%;
-  width: 100%;
+.searchResultContainer {
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -242,11 +260,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.searchForm_show {
-  opacity: 1;
-  visibility: visible;
+  position: relative;
 }
 
 /*!
