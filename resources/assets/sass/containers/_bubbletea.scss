@@ -1,0 +1,33 @@
+.bubbleteaContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+  height: 100vh;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  position: relative;
+  background: grey;
+  // background-image: url('/public/img/bbt3.jpg');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-attachment: fixed;
+  overflow-y: scroll;
+
+  .bbtMap {
+    height: 250px;
+    width: 100%;
+  }
+
+  .bbtInfo {
+    height: 60%;
+    width: 100%;
+    background: lightblue;
+  }
+
+  .comments {
+
+  }
+}

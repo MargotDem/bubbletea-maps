@@ -62801,7 +62801,9 @@ var SearchResult = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseContainer__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_SearchForm__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62810,32 +62812,93 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* global google */
 
 
 
 
-var Bubbletea = function (_BaseContainer) {
-  _inherits(Bubbletea, _BaseContainer);
 
-  function Bubbletea() {
+
+var Bubbletea = function (_Component) {
+  _inherits(Bubbletea, _Component);
+
+  function Bubbletea(props) {
     _classCallCheck(this, Bubbletea);
 
-    return _possibleConstructorReturn(this, (Bubbletea.__proto__ || Object.getPrototypeOf(Bubbletea)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Bubbletea.__proto__ || Object.getPrototypeOf(Bubbletea)).call(this, props));
+
+    _this.state = {
+      bubbletea: []
+    };
+    return _this;
   }
 
   _createClass(Bubbletea, [{
-    key: 'renderMe',
-    value: function renderMe(t) {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      function initMap(bubbleTea) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow({});
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', function (marker) {
+          return function () {
+            infowindow.setContent(bubbleTea.info);
+            infowindow.open(map, marker);
+          };
+        }(marker));
+      }
+
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('http://localhost:8888/public/api/bubbleteas/6').then(function (bubbletea) {
+        _this2.setState({ bubbletea: bubbletea.data });
+      }).catch(function (error) {
+        console.log(error);
+      }).then(function () {
+        var bubbletea = _this2.state.bubbletea;
+
+        initMap({
+          info: bubbletea.name,
+          lat: bubbletea.latitude,
+          long: bubbletea.longitude
+        });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      // console.log(this.state.bubbletea.name)
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        null,
-        'bubbletea compo'
+        { className: 'mainContainer' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'bubbleteaContainer' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_SearchForm__["a" /* default */], null),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtMap', id: 'map' }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'bbtInfo' },
+            this.state.bubbletea.address
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'comments' })
+        )
       );
     }
   }]);
 
   return Bubbletea;
-}(__WEBPACK_IMPORTED_MODULE_1__BaseContainer__["a" /* default */]);
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Bubbletea);
 

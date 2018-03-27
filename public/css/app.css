@@ -190,6 +190,7 @@
   opacity: 0;
   visibility: hidden;
   border: 1px solid lightgray;
+  z-index: 5000;
 }
 
 .searchForm .myRoundButton {
@@ -376,6 +377,37 @@
   color: #e23b49;
   font-family: "Roboto Slab", serif;
   font-size: 20px;
+}
+
+.bubbleteaContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: baseline;
+      -ms-flex-pack: baseline;
+          justify-content: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  position: relative;
+  background: grey;
+  overflow-y: scroll;
+}
+
+.bubbleteaContainer .bbtMap {
+  height: 250px;
+  width: 100%;
+}
+
+.bubbleteaContainer .bbtInfo {
+  height: 60%;
+  width: 100%;
+  background: lightblue;
 }
 
 /*!
