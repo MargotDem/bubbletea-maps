@@ -60056,20 +60056,19 @@ var Sidebar = function (_BaseContainer) {
   _createClass(Sidebar, [{
     key: 'handleOpenClick',
     value: function handleOpenClick() {
-      setTimeout(function () {
-        document.getElementById('sidebar-bottom').className = 'sidebar-bottom sidebar-bottom_show';
-        document.getElementById('sidebar-top').className = 'sidebar-top sidebar-top_show';
-      }, 500);
+      // setTimeout(function () {
+      //   document.getElementById('sidebar-bottom').className = 'sidebar-bottom sidebar-bottom_show'
+      //   document.getElementById('sidebar-top').className = 'sidebar-top sidebar-top_show'
+      // }, 500)
       document.getElementById('sidebar_right').className = 'sidebar sidebar_right sidebar_right_show';
     }
   }, {
     key: 'handleCloseClick',
     value: function handleCloseClick() {
-      setTimeout(function () {
-        document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
-      }, 500);
-      document.getElementById('sidebar-bottom').className = 'sidebar-bottom';
-      document.getElementById('sidebar-top').className = 'sidebar-top';
+      // setTimeout(function () {
+      //   document.getElementById('sidebar_right').className = 'sidebar sidebar_right'
+      // }, 500)
+      document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
     }
   }, {
     key: 'renderMe',
@@ -60130,7 +60129,7 @@ var Sidebar = function (_BaseContainer) {
           { id: 'sidebar_right', className: 'sidebar sidebar_right' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { id: 'sidebar-top', className: 'sidebar-top' },
+            { className: 'sidebar-top' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'button',
               { className: 'myRoundButton myRoundButton_color', onClick: function onClick() {
@@ -60151,7 +60150,7 @@ var Sidebar = function (_BaseContainer) {
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { id: 'sidebar-bottom', className: 'sidebar-bottom' },
+            { className: 'sidebar-bottom' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               { className: 'sidebar-text' },

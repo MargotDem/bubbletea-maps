@@ -87,10 +87,10 @@
 
 .sidebar_right {
   background-color: whitesmoke;
-  position: fixed;
-  left: 243px;
+  position: absolute;
+  left: 0px;
   height: 100vh;
-  width: 0px;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -101,7 +101,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 30px 0px;
+  padding: 30px 20px;
   overflow: hidden;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -124,30 +124,6 @@
   color: #355b82;
 }
 
-.sidebar_right .sidebar-top {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.sidebar_right .sidebar-bottom {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.sidebar_right .sidebar-top_show {
-  visibility: visible;
-  opacity: 1;
-}
-
-.sidebar_right .sidebar-bottom_show {
-  visibility: visible;
-  opacity: 1;
-}
-
 .sidebar_right .myRoundButton {
   float: right;
   position: relative;
@@ -155,40 +131,7 @@
 }
 
 .sidebar_right_show {
-  width: 230px;
-  padding: 30px 20px;
-}
-
-.sidebar-animation {
-  width: 0px;
-  position: fixed;
-  left: 0px;
-  -webkit-transition: 1s;
-  transition: 1s;
-  padding: 0px;
-}
-
-.sidebar-animation_show {
-  width: 250px;
-}
-
-.appContainer {
-  width: 100%;
-}
-
-.sidebarContainer {
-  width: 17%;
-  float: left;
-  height: 100vh;
-  background: blue;
-  position: relative;
-}
-
-.mainContainer {
-  width: 83%;
-  float: right;
-  background: red;
-  z-index: 2000;
+  left: 100%;
 }
 
 .myRoundButton {
@@ -209,6 +152,22 @@
 .myRoundButton_color {
   background: #355b82;
   color: whitesmoke;
+}
+
+.appContainer {
+  width: 100%;
+}
+
+.sidebarContainer {
+  width: 17%;
+  float: left;
+  height: 100vh;
+  position: relative;
+}
+
+.mainContainer {
+  width: 83%;
+  float: right;
 }
 
 /*!

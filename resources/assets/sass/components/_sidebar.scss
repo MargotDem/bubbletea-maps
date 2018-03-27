@@ -56,14 +56,14 @@
 
 .sidebar_right {
   background-color: whitesmoke;
-  position: fixed;
-  left: 243px;
+  position: absolute;
+  left: 0px;
   height: 100vh;
-  width: 0px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px 0px;
+  padding: 30px 20px;
   overflow: hidden;
   transition: 0.5s;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
@@ -79,26 +79,6 @@
   a:hover {
     color: $lighter-background-blue;
   }
-  .sidebar-top {
-    transition: 0.5s;
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .sidebar-bottom {
-    transition: 0.5s;
-    visibility: hidden;
-    opacity: 0;
-  }
-  .sidebar-top_show {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .sidebar-bottom_show {
-    visibility: visible;
-    opacity: 1;
-  }
   .myRoundButton {
     float: right;
     position: relative;
@@ -107,37 +87,5 @@
 }
 
 .sidebar_right_show {
-  width: 230px;
-  padding: 30px 20px;
-}
-
-.sidebar-animation {
-  width: 0px;
-  position: fixed;
-  left: 0px;
-  transition: 1s;
-  padding: 0px;
-}
-
-.sidebar-animation_show {
-  width: 250px;
-}
-
-.appContainer {
-  width: 100%;
-}
-
-.sidebarContainer {
-  width: 17%;
-  float: left;
-  height: 100vh;
-  background: blue;
-  position: relative;
-}
-
-.mainContainer {
-  width: 83%;
-  float: right;
-  background: red;
-  z-index: 2000;
+  left: 100%;
 }
