@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-import BaseContainer from '../BaseContainer'
 import SearchForm from '../../components/SearchForm'
 import axios from 'axios'
+import { NavLink } from 'react-router-dom'
 
-export default class SearchResult extends BaseContainer {
+export default class SearchResult extends Component {
   constructor (props) {
     super(props)
     this.state = ({
@@ -19,6 +19,7 @@ export default class SearchResult extends BaseContainer {
       }
     })
     .then(bubbleteas => {
+      // console.log(bubbleteas.data)
       this.setState({ bubbleteas: bubbleteas.data })
     })
     .catch(function (error) {
@@ -26,24 +27,28 @@ export default class SearchResult extends BaseContainer {
     })
   }
 
-  renderProducts () {
-    return this.state.bubbleteas.map(bubbletea => {
-      return (
-        <li key={bubbletea.id} >
-          { bubbletea.name }
-        </li>
-      )
-    })
-  }
-
-  renderMe (t) {
-    console.log(this.state)
+  render () {
     return (
       <div className='mainContainer'>
         <div className='searchResultContainer'>
-          <div className='searchResultMessage'>resulttsss</div>
-
           <SearchForm />
+          <div className='searchResultMessage'>Voici les résultats pour votre recherche :</div>
+          <div className='results'>
+            {
+              this.state.bubbleteas.map(bubbletea => {
+                return (
+                  <NavLink to={'/bubbleteas/' + bubbletea.name} className='bbtCard'>
+                    <div className='bbtPic' />
+                    <div className='bbtInfo'>
+                      <div className='bbtName'>{bubbletea.name}</div>
+                      <div>note</div>
+                      <div>{bubbletea.address}</div>
+                    </div>
+                  </NavLink>
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     )

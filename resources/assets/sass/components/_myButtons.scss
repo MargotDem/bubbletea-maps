@@ -5,7 +5,7 @@
   padding: 0px 10px;
   outline: none !important;
   border: none;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
   &:hover {
     cursor: pointer;
   }
@@ -18,7 +18,7 @@
   font-size: 20px;
   outline: none !important;
   border: none;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
   &:hover {
     cursor: pointer;
   }
@@ -27,4 +27,13 @@
 .myButton_red {
   background: $main-red;
   color: whitesmoke;
+}
+
+.mySelect {
+  border-radius: 4px;
+  height: 40px;
+  font-size: 20px;
+  outline: none !important;
+  border: none;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }

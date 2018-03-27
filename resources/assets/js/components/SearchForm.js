@@ -32,8 +32,9 @@ export default class SearchForm extends Component {
       <div id='searchForm' className='searchForm'>
         <button className='myRoundButton myButton_red' onClick={() => { this.handleCloseClick() }}>&times;</button>
         <section className='searchForm-top'>
+          <p>Choisissez l’arrondissement :</p>
           <form id='searchForm-borough' method='post' action=''>
-            <select name='searchFormBorough' onChange={this.handleInputChange}>
+            <select className='myButton' name='searchFormBorough' onChange={this.handleInputChange}>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
