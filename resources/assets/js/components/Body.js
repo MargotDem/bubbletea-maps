@@ -10,8 +10,8 @@ export default class Body extends Component {
     return (
       <Switch>
         <Route exact path='/' render={(props) => <Home {...props} />} />
-        <Route exact path='/bubbleteas' render={(props) => <SearchResult {...props} />} />
-        <Route exact path='/bubbleteas/:name' render={(props) => <Bubbletea {...props} />} />
+        <Route path='/bubbleteas' render={(props) => <SearchResult {...props} />} />
+        <Route path='/bubbleteas/:name' render={(props) => <Bubbletea {...props} />} />
         <Route path='/' render={() => <Redirect to='/' />} />
       </Switch>
     )
