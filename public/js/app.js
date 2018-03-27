@@ -60056,19 +60056,19 @@ var Sidebar = function (_BaseContainer) {
   _createClass(Sidebar, [{
     key: 'handleOpenClick',
     value: function handleOpenClick() {
-      // setTimeout(function () {
-      //   document.getElementById('sidebar-bottom').className = 'sidebar-bottom sidebar-bottom_show'
-      //   document.getElementById('sidebar-top').className = 'sidebar-top sidebar-top_show'
-      // }, 500)
       document.getElementById('sidebar_right').className = 'sidebar sidebar_right sidebar_right_show';
+      document.getElementById('searchForm').className = 'searchForm';
     }
   }, {
     key: 'handleCloseClick',
-    value: function handleCloseClick() {
-      // setTimeout(function () {
-      //   document.getElementById('sidebar_right').className = 'sidebar sidebar_right'
-      // }, 500)
-      document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
+    value: function handleCloseClick(showForm) {
+      if (showForm) {
+        document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
+        document.getElementById('searchForm').className = 'searchForm searchForm_show';
+      } else {
+        document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
+        document.getElementById('searchForm').className = 'searchForm';
+      }
     }
   }, {
     key: 'renderMe',
@@ -60098,7 +60098,7 @@ var Sidebar = function (_BaseContainer) {
               { className: 'sidebar-text', onClick: function onClick() {
                   _this2.handleOpenClick();
                 } },
-              'Search'
+              'Recherche'
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -60132,20 +60132,22 @@ var Sidebar = function (_BaseContainer) {
             { className: 'sidebar-top' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'button',
-              { className: 'myRoundButton myRoundButton_color', onClick: function onClick() {
-                  _this2.handleCloseClick();
+              { className: 'myRoundButton myButton_red', onClick: function onClick() {
+                  _this2.handleCloseClick(false);
                 } },
               '\xD7'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               { className: 'sidebar-text sidebar-text_title' },
-              'Criterion'
+              'Crit\xE8re'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
-              { className: 'sidebar-text' },
-              'Borough'
+              { className: 'sidebar-text', onClick: function onClick() {
+                  _this2.handleCloseClick(true);
+                } },
+              'Arrondissement'
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -60154,7 +60156,7 @@ var Sidebar = function (_BaseContainer) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               { className: 'sidebar-text' },
-              'See all bubbleteas'
+              'Tous les bubbleteas'
             )
           )
         )
@@ -62627,12 +62629,91 @@ var Home = function (_Component) {
   }
 
   _createClass(Home, [{
+    key: 'handleCloseClick',
+    value: function handleCloseClick() {
+      document.getElementById('searchForm').className = 'searchForm';
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit() {
+      document.getElementById('searchForm-borough').submit();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'mainContainer' },
-        'home here "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."'
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'homeContainer' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'homeMessage' },
+            'Trouvez un bubble tea pr\xE8s de chez vous'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { id: 'searchForm', className: 'searchForm' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { className: 'myRoundButton myButton_red', onClick: function onClick() {
+                  _this2.handleCloseClick();
+                } },
+              '\xD7'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'section',
+              { className: 'searchForm-top' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'form',
+                { id: 'searchForm-borough', method: 'post', action: '' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'select',
+                  { name: 'searchForm-borough' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'option',
+                    { value: '1' },
+                    '1'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'option',
+                    { value: '2' },
+                    '2'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'option',
+                    { value: '3' },
+                    '3'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'option',
+                    { value: '4' },
+                    '4'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'option',
+                    { value: '5' },
+                    '5'
+                  )
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'section',
+              { className: 'searchForm-bottom' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                { className: 'myButton myButton_red', onClick: function onClick() {
+                    _this2.handleSubmit();
+                  } },
+                'Rechercher'
+              )
+            )
+          )
+        )
       );
     }
   }]);
