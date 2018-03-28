@@ -30,14 +30,14 @@ export default class SearchResult extends Component {
   render () {
     return (
       <div className='mainContainer'>
+        <SearchForm />
         <div className='searchResultContainer'>
-          <SearchForm />
           <div className='searchResultMessage'>Voici les résultats pour votre recherche :</div>
           <div className='results'>
             {
               this.state.bubbleteas.map(bubbletea => {
                 return (
-                  <NavLink to={'/bubbleteas/' + bubbletea.name} className='bbtCard'>
+                  <NavLink to={'/bubbleteas/' + bubbletea.id} className='bbtCard'>
                     <div className='bbtPic' />
                     <div className='bbtInfo'>
                       <div className='bbtName'>{bubbletea.name}</div>

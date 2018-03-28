@@ -14,6 +14,7 @@ export default class Bubbletea extends Component {
   }
 
   componentDidMount () {
+    console.log(this.props.location.pathname)
     function initMap (bubbleTea) {
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
@@ -36,7 +37,9 @@ export default class Bubbletea extends Component {
       })(marker))
     }
 
-    axios.get('http://localhost:8888/public/api/bubbleteas/6')
+    let url = this.props.location.pathname
+
+    axios.get('http://localhost:8888/public/api' + url)
     .then(bubbletea => {
       this.setState({ bubbletea: bubbletea.data })
     })
@@ -56,13 +59,13 @@ export default class Bubbletea extends Component {
     // console.log(this.state.bubbletea.name)
     return (
       <div className='mainContainer'>
+        <SearchForm />
         <div className='bubbleteaContainer'>
-          <SearchForm />
-          <div className='bbtMap' id='map'></div>
+          <div className='bbtMap' id='map' />
           <div className='bbtInfo'>
             {this.state.bubbletea.address}
           </div>
-          <div className='comments'></div>
+          <div className='comments' />
         </div>
       </div>
     )

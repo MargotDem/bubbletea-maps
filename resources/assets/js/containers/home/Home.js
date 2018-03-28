@@ -6,9 +6,9 @@ export default class Home extends Component {
   render () {
     return (
       <div className='mainContainer'>
+        <SearchForm />
         <div className='homeContainer'>
           <div className='homeMessage'>Trouvez un bubble tea près de chez vous</div>
-          <SearchForm />
         </div>
       </div>
     )
