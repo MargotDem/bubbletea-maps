@@ -113,14 +113,17 @@
 
 .sidebar_right span {
   color: #e23b49;
+  color: #606060;
 }
 
 .sidebar_right a {
   color: #e23b49;
+  color: #606060;
 }
 
 .sidebar_right a:hover {
   color: #e23b49;
+  color: #606060;
 }
 
 .sidebar_right .myRoundButton {
@@ -271,10 +274,10 @@
 }
 
 .homeMessage {
-  width: 65%;
+  width: 55%;
   height: 55%;
   color: whitesmoke;
-  font-size: 5.5rem;
+  font-size: 4.5rem;
   font-family: "Roboto Slab", serif;
   text-shadow: 0 2px 18px rgba(34, 34, 34, 0.6);
 }
@@ -289,22 +292,20 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  padding-top: 50px;
+  padding-top: 20px;
   overflow-y: scroll;
 }
 
 .searchResultContainer .searchResultMessage {
-  color: #e23b49;
+  color: #606060;
   font-family: "Roboto", sans-serif;
   font-size: 26px;
   width: 90%;
+  text-shadow: 0 2px 8px rgba(34, 34, 34, 0.2);
 }
 
 .searchResultContainer .results {
@@ -395,7 +396,7 @@
 .bubbleteaContainer {
   height: 100vh;
   width: 100%;
-  background: grey;
+  background: whitesmoke;
   overflow-y: scroll;
 }
 
@@ -404,10 +405,57 @@
   width: 100%;
 }
 
-.bubbleteaContainer .bbtInfo {
-  height: 60% !important;
+.bubbleteaContainer .bbtContent {
+  height: 50%;
   width: 100%;
-  background: lightblue;
+  background: whitesmoke;
+  -webkit-box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+.bubbleteaContainer .bbtContent .bbtPic {
+  width: 40%;
+  height: 100%;
+  float: left;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1qHJ9KIr2rfeZRSwIbf1Cbv3oVy7Pj0ODE0l_YiKY8Wlft8w");
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos {
+  width: 60%;
+  height: 100%;
+  float: right;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-left {
+  width: 70%;
+  height: 100%;
+  float: left;
+  padding: 30px 60px;
+  font-family: "Roboto", sans-serif;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-left .bbtName {
+  font-family: "Roboto Slab", serif;
+  font-size: 50px;
+  color: #e23b49;
+  margin-bottom: 30px;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-left .bbtCom {
+  font-size: 25px;
+  color: #404040;
+  margin-bottom: 20px;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-left .bbtDetails span {
+  display: block;
+  color: #808080;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-right {
+  width: 30%;
+  height: 100%;
+  float: right;
 }
 
 .bubbleteaContainer .comments div {

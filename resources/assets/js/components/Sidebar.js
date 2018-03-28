@@ -2,6 +2,7 @@ import React from 'react'
 
 import BaseContainer from '../containers/BaseContainer'
 // import i18n from '../lib/i18n'
+import { NavLink } from 'react-router-dom'
 
 export default class Sidebar extends BaseContainer {
   handleOpenClick () {
@@ -24,7 +25,7 @@ export default class Sidebar extends BaseContainer {
       <div className='sidebarContainer'>
         <div className='sidebar'>
           <div className='sidebar-top'>
-            <span className='sidebar-text sidebar-text_title'><a href=''>BubbleTea Maps</a></span>
+            <span className='sidebar-text sidebar-text_title'><NavLink to={'/'}>BubbleTea Maps</NavLink></span>
             <span className='sidebar-text' onClick={() => { this.handleOpenClick() }}>Recherche</span>
           </div>
           <div className='sidebar-bottom'>
@@ -39,7 +40,7 @@ export default class Sidebar extends BaseContainer {
             <span className='sidebar-text' onClick={() => { this.handleCloseClick(true) }}>Arrondissement</span>
           </div>
           <div className='sidebar-bottom'>
-            <span className='sidebar-text'>Tous les bubbleteas</span>
+            <span className='sidebar-text'><NavLink to={'/bubbleteas'}>Tous les bubbleteas</NavLink></span>
           </div>
         </div>
       </div>

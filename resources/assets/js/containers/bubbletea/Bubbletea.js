@@ -57,13 +57,26 @@ export default class Bubbletea extends Component {
 
   render () {
     // console.log(this.state.bubbletea.name)
+    let { bubbletea } = this.state
     return (
       <div className='mainContainer'>
         <SearchForm />
         <div className='bubbleteaContainer'>
           <div className='bbtMap' id='map' />
-          <div className='bbtInfo'>
-            {this.state.bubbletea.address}
+          <div className='bbtContent'>
+            <div className='bbtPic'></div>
+            <div className='bbtInfos'>
+              <div className='bbtInfos-left'>
+                <div className='bbtName'>{bubbletea.name}</div>
+                <div className='bbtCom'>{bubbletea.additional_info}</div>
+                <div className='bbtDetails'>
+                  <span>{bubbletea.address}</span>
+                  <span>{bubbletea.phone}</span>
+                  <span>{bubbletea.price_range}</span>
+                </div>
+              </div>
+              <div className='bbtInfos-right'></div>
+            </div>
           </div>
           <div className='comments' />
         </div>

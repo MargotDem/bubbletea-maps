@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100%;
   // position: relative;
-  background: grey;
+  background: whitesmoke;
   overflow-y: scroll;
 
   .bbtMap {
@@ -14,10 +14,66 @@
     width: 100%;
   }
 
-  .bbtInfo {
-    height: 60% !important;
+  .bbtContent {
+    height: 50%;
     width: 100%;
-    background: lightblue;
+    background: whitesmoke;
+    box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
+
+    .bbtPic {
+      width: 40%;
+      height: 100%;
+      float: left;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1qHJ9KIr2rfeZRSwIbf1Cbv3oVy7Pj0ODE0l_YiKY8Wlft8w')
+      // background-repeat: no-repeat;
+      // background-size: cover;
+    }
+
+    .bbtInfos {
+      width: 60%;
+      height: 100%;
+      float: right;
+      // padding: 20px;
+
+
+      &-left {
+        width: 70%;
+        height: 100%;
+        float: left;
+        padding: 30px 60px;
+        font-family: $text-font;
+
+
+        .bbtName {
+          font-family: $title-font;
+          font-size: 50px;
+          color: $main-red;
+          margin-bottom: 30px;
+        }
+
+        .bbtCom {
+          font-size: 25px;
+          color: #404040;
+          margin-bottom: 20px;
+
+        }
+
+        .bbtDetails {
+          span {
+            display: block;
+            color: #808080;
+
+          }
+        }
+      }
+
+      &-right {
+        width: 30%;
+        height: 100%;
+        float: right;
+        // background: green;
+      }
+    }
   }
 
   .comments {

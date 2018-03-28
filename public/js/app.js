@@ -60122,6 +60122,7 @@ function loadNamespaces(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containers_BaseContainer__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(21);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -60134,6 +60135,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 // import i18n from '../lib/i18n'
+
 
 var Sidebar = function (_BaseContainer) {
   _inherits(Sidebar, _BaseContainer);
@@ -60179,8 +60181,8 @@ var Sidebar = function (_BaseContainer) {
               'span',
               { className: 'sidebar-text sidebar-text_title' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'a',
-                { href: '' },
+                __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* NavLink */],
+                { to: '/' },
                 'BubbleTea Maps'
               )
             ),
@@ -60247,7 +60249,11 @@ var Sidebar = function (_BaseContainer) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               { className: 'sidebar-text' },
-              'Tous les bubbleteas'
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* NavLink */],
+                { to: '/bubbleteas' },
+                'Tous les bubbleteas'
+              )
             )
           )
         )
@@ -63021,6 +63027,8 @@ var Bubbletea = function (_Component) {
     key: 'render',
     value: function render() {
       // console.log(this.state.bubbletea.name)
+      var bubbletea = this.state.bubbletea;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'mainContainer' },
@@ -63031,8 +63039,46 @@ var Bubbletea = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtMap', id: 'map' }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'bbtInfo' },
-            this.state.bubbletea.address
+            { className: 'bbtContent' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtPic' }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'bbtInfos' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'bbtInfos-left' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'bbtName' },
+                  bubbletea.name
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'bbtCom' },
+                  bubbletea.additional_info
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'bbtDetails' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    null,
+                    bubbletea.address
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    null,
+                    bubbletea.phone
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    null,
+                    bubbletea.price_range
+                  )
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtInfos-right' })
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'comments' })
         )
