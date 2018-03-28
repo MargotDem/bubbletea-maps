@@ -1,5 +1,6 @@
 .searchResultContainer {
   height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +11,6 @@
   // background-image: url('/public/img/bbt3.jpg');
   // background-repeat: no-repeat;
   // background-size: cover;
-  // background-attachment: fixed;
   overflow-y: scroll;
 
   .searchResultMessage {
@@ -18,7 +18,7 @@
     font-family: $text-font;
     font-size: 26px;
     // float: left;
-    width: 70%;
+    width: 90%;
   }
 
   .results {
@@ -26,7 +26,7 @@
     height: 85%;
     // background: grey;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     padding-top: 40px;
 
@@ -39,7 +39,8 @@
       height: 300px;
       width: 300px;
       background: whitesmoke;
-      margin: 30px 20px;
+      margin: 30px 40px;
+      margin-left: 0px;
       box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
       font-family: $text-font;
       animation: fadein 1s;
@@ -49,7 +50,6 @@
 
       &:hover {
         box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.3);
-
       }
 
       @keyframes fadein {
@@ -79,11 +79,13 @@
 
       .bbtPic {
         height: 60%;
+        width: 200;
         background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1qHJ9KIr2rfeZRSwIbf1Cbv3oVy7Pj0ODE0l_YiKY8Wlft8w')
       }
 
       .bbtInfo {
         height: 40%;
+        width: 200;
         padding: 22px;
 
         span {

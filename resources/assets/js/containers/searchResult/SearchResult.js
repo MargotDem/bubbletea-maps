@@ -13,13 +13,13 @@ export default class SearchResult extends Component {
   }
 
   componentDidMount () {
+    let criterion = this.props.location.hash.substr(1) || 'all'
     axios.get('http://localhost:8888/public/api/bubbleteas', {
       params: {
-        borough: 1
+        borough: criterion
       }
     })
     .then(bubbleteas => {
-      // console.log(bubbleteas.data)
       this.setState({ bubbleteas: bubbleteas.data })
     })
     .catch(function (error) {
@@ -37,7 +37,7 @@ export default class SearchResult extends Component {
             {
               this.state.bubbleteas.map(bubbletea => {
                 return (
-                  <NavLink to={'/bubbleteas/' + bubbletea.id} className='bbtCard'>
+                  <NavLink to={'/bubbleteas/' + bubbletea.id} className='bbtCard' key={bubbletea.id}>
                     <div className='bbtPic' />
                     <div className='bbtInfo'>
                       <div className='bbtName'>{bubbletea.name}</div>

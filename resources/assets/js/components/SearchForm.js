@@ -1,3 +1,4 @@
+/* global location */
 import React, { Component } from 'react'
 
 export default class SearchForm extends Component {
@@ -10,12 +11,21 @@ export default class SearchForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentWillReceiveProps (nextProps) {
+    // why the hell does this.props.location not exist at this point in time??
+  }
+
   handleCloseClick () {
     document.getElementById('searchForm').className = 'searchForm'
   }
 
   handleSubmit (e) {
     window.location = ('#/bubbleteas#' + this.state.searchFormBorough)
+
+    // have to reload so that if user does another search while on /#/bubbleteas#12
+    // already, it reloads and fetches the right results
+    // // TODO: not do this but watch for url change or something (because manually changing the url this doesnt reload)?
+    location.reload()
     document.getElementById('searchForm').className = 'searchForm'
   }
 
@@ -28,6 +38,7 @@ export default class SearchForm extends Component {
   }
 
   render () {
+    console.log('zfed')
     return (
       <div id='searchForm' className='searchForm'>
         <button className='myRoundButton myButton_red' onClick={() => { this.handleCloseClick() }}>&times;</button>

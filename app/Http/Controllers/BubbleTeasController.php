@@ -12,10 +12,14 @@ class BubbleTeasController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
-    return BubbleTea::all();
-    // return response(['Product 1', 'Product 2', 'Product 3'],200);
+    if ($request->input('borough') == 'all') {
+      return BubbleTea::all();
+    } else {
+      return BubbleTea::findByBorough($request->input('borough'));
+
+    }
   }
 
   /**

@@ -2229,6 +2229,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* global location */
 
 
 var SearchForm = function (_Component) {
@@ -2248,6 +2249,11 @@ var SearchForm = function (_Component) {
   }
 
   _createClass(SearchForm, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // why the hell does this.props.location not exist at this point in time??
+    }
+  }, {
     key: 'handleCloseClick',
     value: function handleCloseClick() {
       document.getElementById('searchForm').className = 'searchForm';
@@ -2256,6 +2262,11 @@ var SearchForm = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       window.location = '#/bubbleteas#' + this.state.searchFormBorough;
+
+      // have to reload so that if user does another search while on /#/bubbleteas#12
+      // already, it reloads and fetches the right results
+      // // TODO: not do this but watch for url change or something (because manually changing the url this doesnt reload)?
+      location.reload();
       document.getElementById('searchForm').className = 'searchForm';
     }
   }, {
@@ -2270,6 +2281,7 @@ var SearchForm = function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log('zfed');
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { id: 'searchForm', className: 'searchForm' },
@@ -62828,12 +62840,12 @@ var SearchResult = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      var criterion = this.props.location.hash.substr(1) || 'all';
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('http://localhost:8888/public/api/bubbleteas', {
         params: {
-          borough: 1
+          borough: criterion
         }
       }).then(function (bubbleteas) {
-        // console.log(bubbleteas.data)
         _this2.setState({ bubbleteas: bubbleteas.data });
       }).catch(function (error) {
         console.log(error);
@@ -62860,7 +62872,7 @@ var SearchResult = function (_Component) {
             this.state.bubbleteas.map(function (bubbletea) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* NavLink */],
-                { to: '/bubbleteas/' + bubbletea.id, className: 'bbtCard' },
+                { to: '/bubbleteas/' + bubbletea.id, className: 'bbtCard', key: bubbletea.id },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtPic' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
