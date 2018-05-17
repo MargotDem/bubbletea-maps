@@ -5,17 +5,20 @@ import Sidebar from './components/Sidebar'
 import Body from './components/Body'
 import { HashRouter } from 'react-router-dom'
 import { Scroller } from './components/scroller'
+import { CookiesProvider } from 'react-cookie'
 
 class App extends Component {
   render () {
     return (
-      <HashRouter>
-        <div className='appContainer'>
-          <Scroller />
-          <Sidebar />
-          <Body />
-        </div>
-      </HashRouter>
+      <CookiesProvider>
+        <HashRouter>
+          <div className='appContainer'>
+            <Scroller />
+            <Sidebar />
+            <Body />
+          </div>
+        </HashRouter>
+      </CookiesProvider>
     )
   }
 }

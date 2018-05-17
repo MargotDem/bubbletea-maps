@@ -41,9 +41,7 @@ export default class Sidebar extends BaseContainer {
             <span className='sidebar-text sidebar-text_title'>Critère</span>
             <span className='sidebar-text' onClick={() => { this.handleCloseClick(true) }}>Arrondissement</span>
           </div>
-          <div className='sidebar-bottom'>
-            <span className='sidebar-text'><NavLink to={'/bubbleteas'}>Tous les bubbleteas</NavLink></span>
-          </div>
+          <div className='sidebar-bottom' />
         </div>
       </div>
     )

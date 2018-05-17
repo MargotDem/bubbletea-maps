@@ -23,6 +23,16 @@ class BubbleTeasController extends Controller
   }
 
   /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function test(Request $request)
+  {
+    return "holaaa";
+  }
+
+  /**
    * Show the form for creating a new resource.
    *
    * @return \Illuminate\Http\Response
