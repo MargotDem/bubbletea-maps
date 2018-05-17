@@ -26,7 +26,7 @@
 }
 
 .sidebar {
-  background-color: #e23b49;
+  background-color: #ff4454;
   height: 100vh;
   width: 100%;
   position: absolute;
@@ -112,17 +112,17 @@
 }
 
 .sidebar_right span {
-  color: #e23b49;
+  color: #ff4454;
   color: #606060;
 }
 
 .sidebar_right a {
-  color: #e23b49;
+  color: #ff4454;
   color: #606060;
 }
 
 .sidebar_right a:hover {
-  color: #e23b49;
+  color: #ff4454;
   color: #606060;
 }
 
@@ -167,7 +167,7 @@
 }
 
 .myButton_red {
-  background: #e23b49;
+  background: #ff4454;
   color: whitesmoke;
 }
 
@@ -177,8 +177,8 @@
   font-size: 20px;
   outline: none !important;
   border: none;
-  -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  background: #ff4454;
+  color: whitesmoke;
 }
 
 .searchForm {
@@ -194,6 +194,7 @@
   visibility: hidden;
   border: 1px solid lightgray;
   z-index: 5000;
+  border-radius: 4px;
 }
 
 .searchForm .myRoundButton {
@@ -388,7 +389,7 @@
 }
 
 .searchResultContainer .results .bbtCard .bbtInfo .bbtName {
-  color: #e23b49;
+  color: #ff4454;
   font-family: "Roboto Slab", serif;
   font-size: 20px;
 }
@@ -437,7 +438,7 @@
 .bubbleteaContainer .bbtContent .bbtInfos-left .bbtName {
   font-family: "Roboto Slab", serif;
   font-size: 50px;
-  color: #e23b49;
+  color: #ff4454;
   margin-bottom: 30px;
 }
 

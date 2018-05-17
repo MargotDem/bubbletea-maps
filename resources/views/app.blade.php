@@ -8,6 +8,8 @@
         <title>BubbleTea Maps</title>
         <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5lRs-K-ynKO525aDEktx3uZI_8Oa2SQ8&" async defer></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
         <div id="root"></div>

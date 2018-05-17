@@ -35,5 +35,7 @@
   font-size: 20px;
   outline: none !important;
   border: none;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  background: $main-red;
+  color: $white;
+  // box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }

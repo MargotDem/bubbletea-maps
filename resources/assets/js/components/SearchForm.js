@@ -45,7 +45,7 @@ export default class SearchForm extends Component {
         <section className='searchForm-top'>
           <p>Choisissez l’arrondissement :</p>
           <form id='searchForm-borough' method='post' action=''>
-            <select className='myButton' name='searchFormBorough' onChange={this.handleInputChange}>
+            <select className='mySelect' name='searchFormBorough' onChange={this.handleInputChange}>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
