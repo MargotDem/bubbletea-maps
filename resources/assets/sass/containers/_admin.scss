@@ -1,0 +1,27 @@
+/*
+add form
+*/
+
+.addForm {
+  position: fixed;
+  top: 100px;
+  left: 35vw;
+  margin: auto;
+  width: 30vw;
+  height: 80vh;
+  background: grey;
+}
+
+.addForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+}
+
+.addForm input {
+  display: block;
+  width: 250px;
+  height: 40px;
+  margin: 10px 0px;
+}

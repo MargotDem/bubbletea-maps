@@ -12,4 +12,9 @@ class BubbleTea extends Model
       $bubbleteas = BubbleTea::where('borough', $borough)->get();
       return $bubbleteas;
     }
+
+    public static function store($nvmind)
+    {
+      return "heyyyy";
+    }
 }

@@ -50,22 +50,21 @@ class BubbleTeasController extends Controller
    */
   public function store(Request $request)
   {
-    $this->validate($request, [
-      'name' => 'required|max:50',
-      'address' => 'required|100',
-      'phone' => 'required|14',
-      'open_times' => 'required|255',
-      'additional_info' => 'required|255',
-      'global_note' => 'required|integer',
-      'longitude' => 'required|numeric',
-      'latitude' => 'required|numeric',
-      'borough' => 'required|integer',
-      'price_range' => 'required|50'
-    ]);
+    // $this->validate($request, [
+    //   'name' => 'required|max:50',
+    //   'address' => 'required|100',
+    //   'phone' => '14',
+    //   'open_times' => '255',
+    //   'additional_info' => '255',
+    //   'longitude' => 'numeric',
+    //   'latitude' => 'numeric',
+    //   'borough' => 'required|integer',
+    //   'price_range' => '50'
+    // ]);
 
-    $bubbletea = BubbleTea::create($request->all());
-
-    return response()->json($bubbletea, 201);
+    $bubbletea = BubbleTea::store($request->all());
+    
+    return $bubbletea;
   }
 
   /**

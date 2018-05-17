@@ -63107,6 +63107,7 @@ var Bubbletea = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_cookie__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_cookie__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AddForm__ = __webpack_require__(163);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -63122,6 +63123,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
 var Admin = function (_Component) {
   _inherits(Admin, _Component);
 
@@ -63131,11 +63134,13 @@ var Admin = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).call(this, props));
 
     _this.state = {
-      isAdminLogged: false
+      isAdminLogged: false,
+      showForm: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.handleInputChange = _this.handleInputChange.bind(_this);
     _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+    _this.showAddForm = _this.showAddForm.bind(_this);
     return _this;
   }
 
@@ -63204,13 +63209,23 @@ var Admin = function (_Component) {
       }
     }
   }, {
+    key: 'showAddForm',
+    value: function showAddForm(showForm) {
+      this.setState({
+        showForm: showForm
+      });
+    }
+  }, {
     key: 'renderWelcomePage',
     value: function renderWelcomePage() {
       var _this3 = this;
 
+      var showForm = this.state.showForm;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         null,
+        showForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AddForm__["a" /* default */], { showAddForm: this.showAddForm }),
         'welcome page',
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
@@ -63220,6 +63235,13 @@ var Admin = function (_Component) {
             { to: '/bubbleteas' },
             'Tous les bubbleteas'
           )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { onClick: function onClick() {
+              _this3.showAddForm(true);
+            } },
+          'Add a bubble tea'
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
@@ -63971,6 +63993,119 @@ function withCookies(Component) {
   return (0, _hoistNonReactStatics2.default)(Wrapper, Component);
 }
 module.exports = exports['default'];
+
+/***/ }),
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var AddForm = function (_Component) {
+  _inherits(AddForm, _Component);
+
+  function AddForm(props) {
+    _classCallCheck(this, AddForm);
+
+    var _this = _possibleConstructorReturn(this, (AddForm.__proto__ || Object.getPrototypeOf(AddForm)).call(this, props));
+
+    _this.state = {};
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
+    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+    return _this;
+  }
+
+  _createClass(AddForm, [{
+    key: 'handleSubmit',
+    value: function handleSubmit() {
+      console.log(this.state);
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/public/api/bubbleteas', {
+        test: 'lalala test'
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'handleInputChange',
+    value: function handleInputChange(e) {
+      var field = e.target.name;
+      var value = e.target.value;
+      this.setState(_defineProperty({}, field, value));
+    }
+  }, {
+    key: 'handleKeyPress',
+    value: function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.handleSubmit();
+      }
+    }
+  }, {
+    key: 'handleCloseClick',
+    value: function handleCloseClick() {
+      this.props.showAddForm(false);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'addForm' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { className: 'myRoundButton myButton_red', onClick: function onClick() {
+              _this2.handleCloseClick(false);
+            } },
+          '\xD7'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'form',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'name', placeholder: 'Nom', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'address', placeholder: 'Adresse', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'phone', placeholder: 'T\xE9l\xE9phone', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'open_times', placeholder: 'Horaires', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'additional_info', placeholder: 'Autre(s) info(s)', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'longitude', placeholder: 'Longitude', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'latitude', placeholder: 'Latitude', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'borough', placeholder: 'Arrondissement', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'price_range', placeholder: 'Prix', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { onClick: function onClick() {
+                _this2.handleSubmit();
+              } },
+            'Add'
+          )
+        )
+      );
+    }
+  }]);
+
+  return AddForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (AddForm);
 
 /***/ })
 /******/ ]);
