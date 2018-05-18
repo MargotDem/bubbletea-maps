@@ -69,7 +69,6 @@ export default class Bubbletea extends Component {
   }
 
   render () {
-    // console.log(this.state.bubbletea.name)
     let { bubbletea, showRateForm } = this.state
     return (
       <div className='mainContainer'>
@@ -77,7 +76,9 @@ export default class Bubbletea extends Component {
         <div className='bubbleteaContainer'>
           <div className='bbtMap' id='map' />
           <div className='bbtContent'>
-            <div className='bbtPic' />
+            <div className='bbtPic'>
+              <img alt='' src={bubbletea.pic_link} />
+            </div>
             <div className='bbtInfos'>
               <div className='bbtInfos-left'>
                 <div className='bbtName'>{bubbletea.name}</div>

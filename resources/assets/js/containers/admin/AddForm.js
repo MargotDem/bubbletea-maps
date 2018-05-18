@@ -54,6 +54,7 @@ export default class AddForm extends Component {
           <input type='text' name='latitude' placeholder='Latitude' onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
           <input type='text' name='borough' placeholder='Arrondissement' onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
           <input type='text' name='price_range' placeholder='Prix' onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
+          <input type='text' name='pic_link' placeholder='Lien photo' onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
           <div onClick={() => { this.handleSubmit() }}>Add</div>
         </form>
       </div>

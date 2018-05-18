@@ -62882,7 +62882,11 @@ var SearchResult = function (_Component) {
               return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* NavLink */],
                 { to: '/bubbleteas/' + bubbletea.id, className: 'bbtCard', key: bubbletea.id },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtPic' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'bbtPic' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { alt: '', src: bubbletea.pic_link })
+                ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
                   { className: 'bbtInfo' },
@@ -62894,7 +62898,7 @@ var SearchResult = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
-                    'note'
+                    Math.round(bubbletea.global_note * 10) / 10
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
@@ -63048,7 +63052,6 @@ var Bubbletea = function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      // console.log(this.state.bubbletea.name)
       var _state = this.state,
           bubbletea = _state.bubbletea,
           showRateForm = _state.showRateForm;
@@ -63064,7 +63067,11 @@ var Bubbletea = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'bbtContent' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtPic' }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'bbtPic' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { alt: '', src: bubbletea.pic_link })
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'bbtInfos' },
@@ -64127,6 +64134,7 @@ var AddForm = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'latitude', placeholder: 'Latitude', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'borough', placeholder: 'Arrondissement', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'price_range', placeholder: 'Prix', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'pic_link', placeholder: 'Lien photo', onChange: this.handleInputChange, onKeyPress: this.handleKeyPress }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { onClick: function onClick() {

@@ -38,10 +38,12 @@ export default class SearchResult extends Component {
               this.state.bubbleteas.map(bubbletea => {
                 return (
                   <NavLink to={'/bubbleteas/' + bubbletea.id} className='bbtCard' key={bubbletea.id}>
-                    <div className='bbtPic' />
+                    <div className='bbtPic'>
+                      <img alt='' src={bubbletea.pic_link} />
+                    </div>
                     <div className='bbtInfo'>
                       <div className='bbtName'>{bubbletea.name}</div>
-                      <div>note</div>
+                      <div>{Math.round(bubbletea.global_note * 10) / 10}</div>
                       <div>{bubbletea.address}</div>
                     </div>
                   </NavLink>

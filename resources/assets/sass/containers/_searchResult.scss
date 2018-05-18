@@ -81,7 +81,11 @@
       .bbtPic {
         height: 60%;
         width: 200;
-        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1qHJ9KIr2rfeZRSwIbf1Cbv3oVy7Pj0ODE0l_YiKY8Wlft8w')
+      }
+
+      .bbtPic img {
+        width: 100%;
+        height: 100%;
       }
 
       .bbtInfo {
