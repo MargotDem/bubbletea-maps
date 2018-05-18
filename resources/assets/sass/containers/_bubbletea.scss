@@ -37,12 +37,11 @@
 
 
       &-left {
-        width: 70%;
+        width: 60%;
         height: 100%;
         float: left;
         padding: 30px 60px;
         font-family: $text-font;
-
 
         .bbtName {
           font-family: $title-font;
@@ -62,16 +61,27 @@
           span {
             display: block;
             color: #808080;
-
           }
         }
       }
 
       &-right {
-        width: 30%;
+        width: 40%;
         height: 100%;
         float: right;
         // background: green;
+        color: #404040;
+        padding: 50px 60px 30px 60px;
+        font-size: 30px;
+
+        .rateBubbleTea {
+          color: #808080;
+        }
+
+        .rateBubbleTea:hover {
+          color: $main-red;
+          cursor: pointer;
+        }
       }
     }
   }

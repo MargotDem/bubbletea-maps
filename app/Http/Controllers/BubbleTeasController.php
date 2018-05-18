@@ -63,8 +63,16 @@ class BubbleTeasController extends Controller
     // ]);
 
     $bubbletea = BubbleTea::store($request->all());
-    
+
     return $bubbletea;
+  }
+
+  public function storeAverage(Request $request)
+  {
+    $id = $request->input('id');
+    $global_note = $request->input('global_note');
+    $note_votes = $request->input('note_votes');
+    BubbleTea::storeAverage($id, $global_note, $note_votes);
   }
 
   /**

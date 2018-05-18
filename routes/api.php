@@ -25,6 +25,8 @@ Route::post('admin', 'AdminController@logIn');
 
 Route::put('bubbleteas', 'BubbleTeasController@store');
 
+Route::put('bubbleteas/average', 'BubbleTeasController@storeAverage');
+
 // Route::post('bubbleteas','BubbleTeasController@store');
 //
 // Route::put('bubbleteas/{bubbletea}','BubbleTeasController@update');

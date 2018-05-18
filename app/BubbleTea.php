@@ -17,4 +17,13 @@ class BubbleTea extends Model
     {
       return "heyyyy";
     }
+
+    public static function storeAverage($id, $global_note, $note_votes)
+    {
+      $bubbletea = BubbleTea::find($id);
+      $bubbletea->global_note = $global_note;
+      $bubbletea->note_votes = $note_votes;
+      $bubbletea->save();
+      return;
+    }
 }

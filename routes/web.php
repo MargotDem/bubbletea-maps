@@ -26,3 +26,5 @@ Route::get('/', function () {
 // Route::put('bubbleteas/{bubbletea}','BubbleTeasController@update');
 //
 // Route::delete('bubbleteas/{bubbletea}', 'BubbleTeasController@delete');
+
+Route::get('bubbleteas/average', 'BubbleTeasController@storeAverage');

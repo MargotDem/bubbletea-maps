@@ -428,7 +428,7 @@
 }
 
 .bubbleteaContainer .bbtContent .bbtInfos-left {
-  width: 70%;
+  width: 60%;
   height: 100%;
   float: left;
   padding: 30px 60px;
@@ -454,9 +454,21 @@
 }
 
 .bubbleteaContainer .bbtContent .bbtInfos-right {
-  width: 30%;
+  width: 40%;
   height: 100%;
   float: right;
+  color: #404040;
+  padding: 50px 60px 30px 60px;
+  font-size: 30px;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-right .rateBubbleTea {
+  color: #808080;
+}
+
+.bubbleteaContainer .bbtContent .bbtInfos-right .rateBubbleTea:hover {
+  color: #ff4454;
+  cursor: pointer;
 }
 
 .bubbleteaContainer .comments div {

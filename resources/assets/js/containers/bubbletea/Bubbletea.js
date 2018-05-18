@@ -1,42 +1,49 @@
 /* global google */
 
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import SearchForm from '../../components/SearchForm'
-import axios from 'axios'
+import RateForm from './RateForm'
 
 export default class Bubbletea extends Component {
   constructor (props) {
     super(props)
     this.state = ({
-      bubbletea: []
+      bubbletea: [],
+      showRateForm: false
     })
+    this.showRateForm = this.showRateForm.bind(this)
+    this.fetchBubbleTea = this.fetchBubbleTea.bind(this)
   }
 
   componentDidMount () {
-    console.log(this.props.location.pathname)
-    function initMap (bubbleTea) {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      })
+    this.fetchBubbleTea()
+  }
 
-      var infowindow = new google.maps.InfoWindow({})
+  initMap (bubbleTea) {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    })
 
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
-        map: map
-      })
+    var infowindow = new google.maps.InfoWindow({})
 
-      google.maps.event.addListener(marker, 'click', (function (marker) {
-        return function () {
-          infowindow.setContent(bubbleTea.info)
-          infowindow.open(map, marker)
-        }
-      })(marker))
-    }
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
+      map: map
+    })
 
+    google.maps.event.addListener(marker, 'click', (function (marker) {
+      return function () {
+        infowindow.setContent(bubbleTea.info)
+        infowindow.open(map, marker)
+      }
+    })(marker))
+  }
+
+  fetchBubbleTea (reloadMap) {
     let url = this.props.location.pathname
 
     axios.get('http://localhost:8888/public/api' + url)
@@ -47,7 +54,7 @@ export default class Bubbletea extends Component {
       console.log(error)
     }).then(() => {
       let { bubbletea } = this.state
-      initMap({
+      this.initMap({
         info: bubbletea.name,
         lat: bubbletea.latitude,
         long: bubbletea.longitude
@@ -55,16 +62,22 @@ export default class Bubbletea extends Component {
     })
   }
 
+  showRateForm (showRateForm) {
+    this.setState({
+      showRateForm: showRateForm
+    })
+  }
+
   render () {
     // console.log(this.state.bubbletea.name)
-    let { bubbletea } = this.state
+    let { bubbletea, showRateForm } = this.state
     return (
       <div className='mainContainer'>
         <SearchForm />
         <div className='bubbleteaContainer'>
           <div className='bbtMap' id='map' />
           <div className='bbtContent'>
-            <div className='bbtPic'></div>
+            <div className='bbtPic' />
             <div className='bbtInfos'>
               <div className='bbtInfos-left'>
                 <div className='bbtName'>{bubbletea.name}</div>
@@ -75,7 +88,22 @@ export default class Bubbletea extends Component {
                   <span>{bubbletea.price_range}</span>
                 </div>
               </div>
-              <div className='bbtInfos-right'></div>
+              <div className='bbtInfos-right'>
+                {Math.round(bubbletea.global_note * 10) / 10}/10
+                &nbsp;
+                <span className='rateBubbleTea' onClick={() => { this.showRateForm(true) }}>
+                  +
+                </span>
+                {
+                  showRateForm && <RateForm
+                    id={bubbletea.id}
+                    numberOfVotes={bubbletea.note_votes}
+                    currentAverage={bubbletea.global_note}
+                    showRateForm={this.showRateForm}
+                    fetchBubbleTea={this.fetchBubbleTea}
+                  />
+                }
+              </div>
             </div>
           </div>
           <div className='comments' />

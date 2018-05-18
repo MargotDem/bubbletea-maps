@@ -38,7 +38,6 @@ export default class SearchForm extends Component {
   }
 
   render () {
-    console.log('zfed')
     return (
       <div id='searchForm' className='searchForm'>
         <button className='myRoundButton myButton_red' onClick={() => { this.handleCloseClick() }}>&times;</button>

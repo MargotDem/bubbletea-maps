@@ -2281,7 +2281,6 @@ var SearchForm = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('zfed');
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { id: 'searchForm', className: 'searchForm' },
@@ -62951,9 +62950,10 @@ var SearchResult = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_SearchForm__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_SearchForm__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RateForm__ = __webpack_require__(164);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62969,6 +62969,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var Bubbletea = function (_Component) {
   _inherits(Bubbletea, _Component);
 
@@ -62978,49 +62979,57 @@ var Bubbletea = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Bubbletea.__proto__ || Object.getPrototypeOf(Bubbletea)).call(this, props));
 
     _this.state = {
-      bubbletea: []
+      bubbletea: [],
+      showRateForm: false
     };
+    _this.showRateForm = _this.showRateForm.bind(_this);
+    _this.fetchBubbleTea = _this.fetchBubbleTea.bind(_this);
     return _this;
   }
 
   _createClass(Bubbletea, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      this.fetchBubbleTea();
+    }
+  }, {
+    key: 'initMap',
+    value: function initMap(bubbleTea) {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var infowindow = new google.maps.InfoWindow({});
+
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', function (marker) {
+        return function () {
+          infowindow.setContent(bubbleTea.info);
+          infowindow.open(map, marker);
+        };
+      }(marker));
+    }
+  }, {
+    key: 'fetchBubbleTea',
+    value: function fetchBubbleTea(reloadMap) {
       var _this2 = this;
-
-      console.log(this.props.location.pathname);
-      function initMap(bubbleTea) {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-
-        var infowindow = new google.maps.InfoWindow({});
-
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(bubbleTea.lat, bubbleTea.long),
-          map: map
-        });
-
-        google.maps.event.addListener(marker, 'click', function (marker) {
-          return function () {
-            infowindow.setContent(bubbleTea.info);
-            infowindow.open(map, marker);
-          };
-        }(marker));
-      }
 
       var url = this.props.location.pathname;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('http://localhost:8888/public/api' + url).then(function (bubbletea) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('http://localhost:8888/public/api' + url).then(function (bubbletea) {
         _this2.setState({ bubbletea: bubbletea.data });
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
         var bubbletea = _this2.state.bubbletea;
 
-        initMap({
+        _this2.initMap({
           info: bubbletea.name,
           lat: bubbletea.latitude,
           long: bubbletea.longitude
@@ -63028,15 +63037,26 @@ var Bubbletea = function (_Component) {
       });
     }
   }, {
+    key: 'showRateForm',
+    value: function showRateForm(_showRateForm) {
+      this.setState({
+        showRateForm: _showRateForm
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       // console.log(this.state.bubbletea.name)
-      var bubbletea = this.state.bubbletea;
+      var _state = this.state,
+          bubbletea = _state.bubbletea,
+          showRateForm = _state.showRateForm;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'mainContainer' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_SearchForm__["a" /* default */], null),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_SearchForm__["a" /* default */], null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { className: 'bubbleteaContainer' },
@@ -63081,7 +63101,26 @@ var Bubbletea = function (_Component) {
                   )
                 )
               ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtInfos-right' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'bbtInfos-right' },
+                Math.round(bubbletea.global_note * 10) / 10,
+                '/10 \xA0',
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'span',
+                  { className: 'rateBubbleTea', onClick: function onClick() {
+                      _this3.showRateForm(true);
+                    } },
+                  '+'
+                ),
+                showRateForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RateForm__["a" /* default */], {
+                  id: bubbletea.id,
+                  numberOfVotes: bubbletea.note_votes,
+                  currentAverage: bubbletea.global_note,
+                  showRateForm: this.showRateForm,
+                  fetchBubbleTea: this.fetchBubbleTea
+                })
+              )
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'comments' })
@@ -64106,6 +64145,153 @@ var AddForm = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (AddForm);
+
+/***/ }),
+/* 164 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var RateForm = function (_Component) {
+  _inherits(RateForm, _Component);
+
+  function RateForm(props) {
+    _classCallCheck(this, RateForm);
+
+    var _this = _possibleConstructorReturn(this, (RateForm.__proto__ || Object.getPrototypeOf(RateForm)).call(this, props));
+
+    _this.state = {
+      grade: '1'
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(RateForm, [{
+    key: 'handleSubmit',
+    value: function handleSubmit() {
+      var _props = this.props,
+          id = _props.id,
+          numberOfVotes = _props.numberOfVotes,
+          currentAverage = _props.currentAverage,
+          showRateForm = _props.showRateForm,
+          fetchBubbleTea = _props.fetchBubbleTea;
+
+      var visitorGrade = Number(this.state.grade);
+      var newNumberOfVotes = numberOfVotes + 1;
+      var newAverage = (numberOfVotes * currentAverage + visitorGrade) / newNumberOfVotes;
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/public/api/bubbleteas/average', {
+        id: id,
+        global_note: newAverage,
+        note_votes: newNumberOfVotes
+      }).then(function (response) {
+        console.log(response);
+        showRateForm(false);
+        fetchBubbleTea();
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'handleInputChange',
+    value: function handleInputChange(e) {
+      var value = e.target.value;
+      this.setState({
+        grade: value
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'select',
+          { onChange: this.handleInputChange },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '1' },
+            '1'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '2' },
+            '2'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '3' },
+            '3'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '4' },
+            '4'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '5' },
+            '5'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '6' },
+            '6'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '7' },
+            '7'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '8' },
+            '8'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '9' },
+            '9'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'option',
+            { value: '10' },
+            '10'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { onClick: function onClick() {
+              _this2.handleSubmit();
+            } },
+          'Go'
+        )
+      );
+    }
+  }]);
+
+  return RateForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (RateForm);
 
 /***/ })
 /******/ ]);
