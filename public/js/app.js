@@ -64074,9 +64074,7 @@ var AddForm = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit() {
       console.log(this.state);
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/public/api/bubbleteas', {
-        test: 'lalala test'
-      }).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/public/api/bubbleteas', this.state).then(function (response) {
         console.log(response);
       }).catch(function (error) {
         console.log(error);

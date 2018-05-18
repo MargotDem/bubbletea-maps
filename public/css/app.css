@@ -487,7 +487,9 @@ add form
   margin: auto;
   width: 30vw;
   height: 80vh;
-  background: grey;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .addForm form {
@@ -508,6 +510,11 @@ add form
   width: 250px;
   height: 40px;
   margin: 10px 0px;
+}
+
+.addForm button {
+  float: right;
+  margin: 10px;
 }
 
 /*!

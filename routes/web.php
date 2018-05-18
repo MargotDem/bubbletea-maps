@@ -28,3 +28,4 @@ Route::get('/', function () {
 // Route::delete('bubbleteas/{bubbletea}', 'BubbleTeasController@delete');
 
 Route::get('bubbleteas/average', 'BubbleTeasController@storeAverage');
+Route::get('bubbleteas', 'BubbleTeasController@store');

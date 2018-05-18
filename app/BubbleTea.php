@@ -15,7 +15,18 @@ class BubbleTea extends Model
 
     public static function store($nvmind)
     {
-      return "heyyyy";
+      BubbleTea::create([
+        'name' => $nvmind['name'],
+        'address' => $nvmind['address'],
+        'phone' => $nvmind['phone'],
+        'open_times' => $nvmind['open_times'],
+        'additional_info' => $nvmind['additional_info'],
+        'longitude' => $nvmind['longitude'],
+        'latitude' => $nvmind['latitude'],
+        'borough' => $nvmind['borough'],
+        'price_range' => $nvmind['price_range']
+      ]);
+      return 'good';
     }
 
     public static function storeAverage($id, $global_note, $note_votes)
