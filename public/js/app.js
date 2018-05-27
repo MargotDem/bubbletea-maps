@@ -2404,11 +2404,6 @@ var SearchForm = function (_Component) {
                   'option',
                   { value: '4' },
                   '4'
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'option',
-                  { value: '5' },
-                  '5'
                 )
               )
             )
@@ -62989,6 +62984,7 @@ var SearchResult = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
+                    'Note : ',
                     Math.round(bubbletea.global_note * 10) / 10
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -63175,7 +63171,8 @@ var Bubbletea = function (_Component) {
       if (deleteForReal) {
         var url = '/public/api/bubbleteas/' + bubbleTeaId;
         __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete(url).then(function (response) {
-          return console.log(response);
+          console.log(response);
+          window.location = '/public/';
         }).catch(function (error) {
           return console.log(error);
         });
@@ -63787,82 +63784,77 @@ var Admin = function (_Component) {
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'mainContainer' },
+        null,
+        showForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AddForm__["a" /* default */], { showAddForm: this.showAddForm }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'adminContainer' },
-          showForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AddForm__["a" /* default */], { showAddForm: this.showAddForm }),
-          'welcome page',
+          null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* NavLink */],
-              { to: '/bubbleteas' },
-              'Tous les bubbleteas'
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'span',
-              { onClick: this.fetchComments },
-              'Tous les commentaires'
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { onClick: function onClick() {
-                _this5.showAddForm(true);
-              } },
-            'Add a bubble tea'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { onClick: function onClick() {
-                _this5.logOut();
-              } },
-            'Log out'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'admin-comments' + (showComments ? ' admin-comments-show' : '') },
-            comments && comments.map(function (item, index) {
-              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { key: index, className: 'comment' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'h6',
-                  null,
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'comment-author' },
-                    item.author_name
-                  ),
-                  '\xA0',
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'comment-date' },
-                    '\u2022\xA0',
-                    item.created_at
-                  )
-                ),
-                item.text,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'h6',
-                  null,
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'comment-delete', onClick: function onClick() {
-                        return _this5.deleteComment(item.id);
-                      } },
-                    'Delete'
-                  )
-                )
-              );
-            })
+            __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* NavLink */],
+            { to: '/bubbleteas' },
+            'Tous les bubbleteas'
           )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { onClick: this.fetchComments },
+            'Tous les commentaires'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { onClick: function onClick() {
+              _this5.showAddForm(true);
+            } },
+          'Ajouter un bubble tea'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { onClick: function onClick() {
+              _this5.logOut();
+            } },
+          'D\xE9connexion'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'admin-comments' + (showComments ? ' admin-comments-show' : '') },
+          comments && comments.map(function (item, index) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { key: index, className: 'comment' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h6',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'span',
+                  { className: 'comment-author' },
+                  item.author_name
+                ),
+                '\xA0',
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'span',
+                  { className: 'comment-date' },
+                  '\u2022\xA0',
+                  item.created_at
+                )
+              ),
+              item.text,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'h6',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'span',
+                  { className: 'comment-delete', onClick: function onClick() {
+                      return _this5.deleteComment(item.id);
+                    } },
+                  'Delete'
+                )
+              )
+            );
+          })
         )
       );
     }
@@ -63906,11 +63898,15 @@ var Admin = function (_Component) {
     value: function render() {
       var isAdminLogged = this.state.isAdminLogged;
 
-      if (!isAdminLogged) {
-        return this.renderConnectionForm();
-      } else {
-        return this.renderWelcomePage();
-      }
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'mainContainer' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'adminContainer' },
+          isAdminLogged ? this.renderWelcomePage() : this.renderConnectionForm()
+        )
+      );
     }
   }]);
 
@@ -64491,7 +64487,7 @@ var AddForm = function (_Component) {
     key: 'handleSubmit',
     value: function handleSubmit() {
       console.log(this.state);
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/public/api/bubbleteas', this.state).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/public/api/bubbleteas', this.state).then(function (response) {
         console.log(response);
       }).catch(function (error) {
         console.log(error);

@@ -511,13 +511,13 @@
 
 .bubbleteaContainer .bbtContent .bbtInfos-left .bbtName {
   font-family: "Roboto Slab", serif;
-  font-size: 50px;
+  font-size: 40px;
   color: #ff4454;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .bubbleteaContainer .bbtContent .bbtInfos-left .bbtCom {
-  font-size: 25px;
+  font-size: 17px;
   color: #404040;
   margin-bottom: 20px;
 }
@@ -629,6 +629,7 @@ delete and edit buttons
   width: 100%;
   background: whitesmoke;
   overflow-y: scroll;
+  padding: 100px 50px;
 }
 
 .admin-comments {

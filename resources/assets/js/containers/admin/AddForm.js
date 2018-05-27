@@ -12,7 +12,7 @@ export default class AddForm extends Component {
 
   handleSubmit () {
     console.log(this.state)
-    axios.put('/public/api/bubbleteas', this.state)
+    axios.post('/public/api/bubbleteas', this.state)
     .then(response => {
       console.log(response)
     })

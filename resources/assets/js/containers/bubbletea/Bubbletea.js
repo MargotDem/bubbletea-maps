@@ -97,7 +97,10 @@ class Bubbletea extends Component {
     if (deleteForReal) {
       let url = '/public/api/bubbleteas/' + bubbleTeaId
       axios.delete(url)
-      .then(response => console.log(response))
+      .then(response => {
+        console.log(response)
+        window.location = '/public/'
+      })
       .catch(error => console.log(error))
     } else {
       return null

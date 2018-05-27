@@ -110,35 +110,32 @@ class Admin extends Component {
   renderWelcomePage () {
     let { showForm, showComments, comments } = this.state
     return (
-      <div className='mainContainer'>
-        <div className='adminContainer'>
+      <div>
+        {
+          showForm && <AddForm showAddForm={this.showAddForm} />
+        }
+        <div>
+          <NavLink to={'/bubbleteas'}>Tous les bubbleteas</NavLink>
+        </div>
+        <div>
+          <span onClick={this.fetchComments}>Tous les commentaires</span>
+        </div>
+        <div onClick={() => { this.showAddForm(true) }}>
+          Ajouter un bubble tea
+        </div>
+        <div onClick={() => { this.logOut() }}>Déconnexion</div>
+        <div className={'admin-comments' + (showComments ? ' admin-comments-show' : '')}>
           {
-            showForm && <AddForm showAddForm={this.showAddForm} />
+            comments && comments.map((item, index) => {
+              return (
+                <div key={index} className='comment'>
+                  <h6><span className='comment-author'>{item.author_name}</span>&nbsp;<span className='comment-date'>&bull;&nbsp;{item.created_at}</span></h6>
+                  {item.text}
+                  <h6><span className='comment-delete' onClick={() => this.deleteComment(item.id)}>Delete</span></h6>
+                </div>
+              )
+            })
           }
-          welcome page
-          <div>
-            <NavLink to={'/bubbleteas'}>Tous les bubbleteas</NavLink>
-          </div>
-          <div>
-            <span onClick={this.fetchComments}>Tous les commentaires</span>
-          </div>
-          <div onClick={() => { this.showAddForm(true) }}>
-            Add a bubble tea
-          </div>
-          <div onClick={() => { this.logOut() }}>Log out</div>
-          <div className={'admin-comments' + (showComments ? ' admin-comments-show' : '')}>
-            {
-              comments && comments.map((item, index) => {
-                return (
-                  <div key={index} className='comment'>
-                    <h6><span className='comment-author'>{item.author_name}</span>&nbsp;<span className='comment-date'>&bull;&nbsp;{item.created_at}</span></h6>
-                    {item.text}
-                    <h6><span className='comment-delete' onClick={() => this.deleteComment(item.id)}>Delete</span></h6>
-                  </div>
-                )
-              })
-            }
-          </div>
         </div>
       </div>
     )
@@ -170,11 +167,17 @@ class Admin extends Component {
 
   render () {
     let { isAdminLogged } = this.state
-    if (!isAdminLogged) {
-      return this.renderConnectionForm()
-    } else {
-      return this.renderWelcomePage()
-    }
+    return (
+      <div className='mainContainer'>
+        <div className='adminContainer'>
+          {
+            isAdminLogged
+            ? this.renderWelcomePage()
+            : this.renderConnectionForm()
+          }
+        </div>
+      </div>
+    )
   }
 }
 
