@@ -2,12 +2,13 @@
 
 import React, { Component } from 'react'
 import axios from 'axios'
+import { withCookies } from 'react-cookie'
 
 import SearchForm from '../../components/SearchForm'
 import RateForm from './RateForm'
 import CommentForm from './CommentForm'
 
-export default class Bubbletea extends Component {
+class Bubbletea extends Component {
   constructor (props) {
     super(props)
     this.state = ({
@@ -22,6 +23,11 @@ export default class Bubbletea extends Component {
   componentDidMount () {
     this.fetchBubbleTea()
     this.fetchComments()
+    const { cookies } = this.props
+    let isAdminLogged = cookies.get('admin') === 'true'
+    isAdminLogged && this.setState({
+      isAdminLogged: isAdminLogged
+    })
   }
 
   initMap (bubbleTea) {
@@ -84,8 +90,20 @@ export default class Bubbletea extends Component {
     })
   }
 
+  delete (bubbleTeaId) {
+    let deleteForReal = window.confirm('Es-tu sûr(e) ?')
+    if (deleteForReal) {
+      let url = '/public/api/bubbleteas/' + bubbleTeaId
+      axios.delete(url)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+    } else {
+      return null
+    }
+  }
+
   render () {
-    let { bubbletea, comments, showRateForm } = this.state
+    let { bubbletea, comments, showRateForm, isAdminLogged } = this.state
     return (
       <div className='mainContainer'>
         <SearchForm />
@@ -120,6 +138,13 @@ export default class Bubbletea extends Component {
                     fetchBubbleTea={this.fetchBubbleTea}
                   />
                 }
+                {
+                  isAdminLogged && <div>
+                    <span className='delete-button' onClick={() => this.delete(bubbletea.id)}>Delete</span>
+                    <br />
+                    <span className='edit-button'>Edit</span>
+                  </div>
+                }
               </div>
             </div>
           </div>
@@ -146,3 +171,5 @@ export default class Bubbletea extends Component {
     )
   }
 }
+
+export default withCookies(Bubbletea)

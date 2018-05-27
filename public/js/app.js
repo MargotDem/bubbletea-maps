@@ -63016,9 +63016,11 @@ var SearchResult = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_SearchForm__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RateForm__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CommentForm__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_cookie__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_cookie__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SearchForm__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RateForm__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CommentForm__ = __webpack_require__(150);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63028,6 +63030,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /* global google */
+
 
 
 
@@ -63059,6 +63062,12 @@ var Bubbletea = function (_Component) {
     value: function componentDidMount() {
       this.fetchBubbleTea();
       this.fetchComments();
+      var cookies = this.props.cookies;
+
+      var isAdminLogged = cookies.get('admin') === 'true';
+      isAdminLogged && this.setState({
+        isAdminLogged: isAdminLogged
+      });
     }
   }, {
     key: 'initMap',
@@ -63125,6 +63134,21 @@ var Bubbletea = function (_Component) {
       });
     }
   }, {
+    key: 'delete',
+    value: function _delete(bubbleTeaId) {
+      var deleteForReal = window.confirm('Es-tu sûr(e) ?');
+      if (deleteForReal) {
+        var url = '/public/api/bubbleteas/' + bubbleTeaId;
+        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete(url).then(function (response) {
+          return console.log(response);
+        }).catch(function (error) {
+          return console.log(error);
+        });
+      } else {
+        return null;
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this4 = this;
@@ -63132,12 +63156,13 @@ var Bubbletea = function (_Component) {
       var _state = this.state,
           bubbletea = _state.bubbletea,
           comments = _state.comments,
-          showRateForm = _state.showRateForm;
+          showRateForm = _state.showRateForm,
+          isAdminLogged = _state.isAdminLogged;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'mainContainer' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_SearchForm__["a" /* default */], null),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_SearchForm__["a" /* default */], null),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { className: 'bubbleteaContainer' },
@@ -63198,13 +63223,30 @@ var Bubbletea = function (_Component) {
                     } },
                   '+'
                 ),
-                showRateForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RateForm__["a" /* default */], {
+                showRateForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__RateForm__["a" /* default */], {
                   id: bubbletea.id,
                   numberOfVotes: bubbletea.note_votes,
                   currentAverage: bubbletea.global_note,
                   showRateForm: this.showRateForm,
                   fetchBubbleTea: this.fetchBubbleTea
-                })
+                }),
+                isAdminLogged && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  null,
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    { className: 'delete-button', onClick: function onClick() {
+                        return _this4.delete(bubbletea.id);
+                      } },
+                    'Delete'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    { className: 'edit-button' },
+                    'Edit'
+                  )
+                )
               )
             )
           ),
@@ -63214,7 +63256,7 @@ var Bubbletea = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'comment' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CommentForm__["a" /* default */], {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CommentForm__["a" /* default */], {
                 bubbleTeaId: bubbletea.id,
                 fetchComments: this.fetchComments
               })
@@ -63251,7 +63293,7 @@ var Bubbletea = function (_Component) {
   return Bubbletea;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (Bubbletea);
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_cookie__["withCookies"])(Bubbletea));
 
 /***/ }),
 /* 149 */

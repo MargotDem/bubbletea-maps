@@ -556,6 +556,15 @@
   visibility: visible;
 }
 
+/*
+delete and edit buttons
+*/
+
+.delete-button:hover,
+.edit-button:hover {
+  cursor: pointer;
+}
+
 .adminContainer {
   height: 100vh;
   width: 100%;
