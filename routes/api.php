@@ -31,6 +31,10 @@ Route::get('comments/{bubbletea}', 'CommentsController@fetchComments');
 
 Route::post('comments', 'CommentsController@store');
 
+Route::get('comments', 'CommentsController@index');
+
+Route::delete('comments/{comment}', 'CommentsController@destroy');
+
 // Route::post('bubbleteas','BubbleTeasController@store');
 //
 // Route::put('bubbleteas/{bubbletea}','BubbleTeasController@update');

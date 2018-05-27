@@ -63563,12 +63563,14 @@ var Admin = function (_Component) {
 
     _this.state = {
       isAdminLogged: false,
-      showForm: false
+      showForm: false,
+      showComments: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.handleInputChange = _this.handleInputChange.bind(_this);
     _this.handleKeyPress = _this.handleKeyPress.bind(_this);
     _this.showAddForm = _this.showAddForm.bind(_this);
+    _this.fetchComments = _this.fetchComments.bind(_this);
     return _this;
   }
 
@@ -63640,50 +63642,134 @@ var Admin = function (_Component) {
     key: 'showAddForm',
     value: function showAddForm(showForm) {
       this.setState({
-        showForm: showForm
+        showForm: showForm,
+        showComments: false
+      });
+    }
+  }, {
+    key: 'fetchComments',
+    value: function fetchComments() {
+      var _this3 = this;
+
+      var url = '/public/api/comments';
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(url).then(function (response) {
+        _this3.setState({
+          comments: response.data,
+          showComments: true,
+          showForm: false
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'deleteComment',
+    value: function deleteComment(itemId) {
+      var _this4 = this;
+
+      var url = '/public/api/comments/' + itemId;
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete(url).then(function (response) {
+        console.log(response);
+        _this4.fetchComments();
+      }).catch(function (error) {
+        return console.log(error);
       });
     }
   }, {
     key: 'renderWelcomePage',
     value: function renderWelcomePage() {
-      var _this3 = this;
+      var _this5 = this;
 
-      var showForm = this.state.showForm;
+      var _state2 = this.state,
+          showForm = _state2.showForm,
+          showComments = _state2.showComments,
+          comments = _state2.comments;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        null,
-        showForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AddForm__["a" /* default */], { showAddForm: this.showAddForm }),
-        'welcome page',
+        { className: 'mainContainer' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          null,
+          { className: 'adminContainer' },
+          showForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AddForm__["a" /* default */], { showAddForm: this.showAddForm }),
+          'welcome page',
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* NavLink */],
-            { to: '/bubbleteas' },
-            'Tous les bubbleteas'
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_3_react_router_dom__["b" /* NavLink */],
+              { to: '/bubbleteas' },
+              'Tous les bubbleteas'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { onClick: this.fetchComments },
+              'Tous les commentaires'
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { onClick: function onClick() {
+                _this5.showAddForm(true);
+              } },
+            'Add a bubble tea'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { onClick: function onClick() {
+                _this5.logOut();
+              } },
+            'Log out'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'admin-comments' + (showComments ? ' admin-comments-show' : '') },
+            comments && comments.map(function (item, index) {
+              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { key: index, className: 'comment' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'h6',
+                  null,
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    { className: 'comment-author' },
+                    item.author_name
+                  ),
+                  '\xA0',
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    { className: 'comment-date' },
+                    '\u2022\xA0',
+                    item.created_at
+                  )
+                ),
+                item.text,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'h6',
+                  null,
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    { className: 'comment-delete', onClick: function onClick() {
+                        return _this5.deleteComment(item.id);
+                      } },
+                    'Delete'
+                  )
+                )
+              );
+            })
           )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { onClick: function onClick() {
-              _this3.showAddForm(true);
-            } },
-          'Add a bubble tea'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { onClick: function onClick() {
-              _this3.logOut();
-            } },
-          'Log out'
         )
       );
     }
   }, {
     key: 'renderConnectionForm',
     value: function renderConnectionForm() {
-      var _this4 = this;
+      var _this6 = this;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -63708,7 +63794,7 @@ var Admin = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: '', onClick: function onClick() {
-                _this4.handleSubmit();
+                _this6.handleSubmit();
               } },
             'Log in'
           )

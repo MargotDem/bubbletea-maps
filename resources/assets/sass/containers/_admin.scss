@@ -1,6 +1,35 @@
+.adminContainer {
+  height: 100vh;
+  width: 100%;
+  background: whitesmoke;
+  overflow-y: scroll;
+}
+
+.admin-comments {
+  transition: 1s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.admin-comments-show {
+  opacity: 1;
+  visibility: visible;
+}
+
 /*
 add form
 */
+
+// .add-form {
+//   transition: 1s;
+//   opacity: 0;
+//   visibility: hidden;
+// }
+//
+// .add-form-show {
+//   opacity: 1;
+//   visibility: visible;
+// }
 
 .addForm {
   position: fixed;
@@ -31,4 +60,19 @@ add form
 .addForm button {
   float: right;
   margin: 10px;
+}
+
+.admin-comments {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+comments
+*/
+
+.comment-delete:hover {
+  cursor: pointer;
 }

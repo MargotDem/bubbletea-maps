@@ -8,6 +8,11 @@ use App\BubbleTea;
 
 class CommentsController extends Controller
 {
+  public function index(Request $request)
+  {
+    return Comment::orderBy('created_at', 'desc')->get();
+  }
+
   public function fetchComments(BubbleTea $bubbletea)
   {
     $id = $bubbletea->id;
@@ -18,5 +23,10 @@ class CommentsController extends Controller
   {
     $comment = Comment::store($request->all());
     return $comment;
+  }
+
+  public function destroy(Comment $comment)
+  {
+    $comment->delete();
   }
 }
