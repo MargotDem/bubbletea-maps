@@ -69,10 +69,13 @@
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
   border-right: 1px solid lightgray;
   z-index: 95;
-  // font-weight: bold;
   span {
     color: $main-red;
     color: #606060;
+    // margin: 20px 0px;
+  }
+  &-text_title {
+    margin-bottom: 60px;
   }
   a {
     color: $main-red;

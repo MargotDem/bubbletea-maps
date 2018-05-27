@@ -2307,7 +2307,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/* global location */
 
 
 var SearchForm = function (_Component) {
@@ -2343,8 +2342,8 @@ var SearchForm = function (_Component) {
 
       // have to reload so that if user does another search while on /#/bubbleteas#12
       // already, it reloads and fetches the right results
-      // // TODO: not do this but watch for url change or something (because manually changing the url this doesnt reload)?
-      location.reload();
+      // TODO: not do this but watch for url change or something (because manually changing the url this doesnt reload)?
+      window.location.reload();
       document.getElementById('searchForm').className = 'searchForm';
     }
   }, {
@@ -2373,41 +2372,63 @@ var SearchForm = function (_Component) {
           'section',
           { className: 'searchForm-top' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'Choisissez l\u2019arrondissement :'
+            'div',
+            { className: 'borough-form', id: 'borough-form' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              null,
+              'Choisissez l\u2019arrondissement :'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'form',
+              { method: 'post', action: '' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'select',
+                { className: 'mySelect', name: 'searchFormBorough', onChange: this.handleInputChange },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '1' },
+                  '1'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '2' },
+                  '2'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '3' },
+                  '3'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '4' },
+                  '4'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'option',
+                  { value: '5' },
+                  '5'
+                )
+              )
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            { id: 'searchForm-borough', method: 'post', action: '' },
+            'div',
+            { className: 'name-form', id: 'name-form' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'select',
-              { className: 'mySelect', name: 'searchFormBorough', onChange: this.handleInputChange },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'option',
-                { value: '1' },
-                '1'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'option',
-                { value: '2' },
-                '2'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'option',
-                { value: '3' },
-                '3'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'option',
-                { value: '4' },
-                '4'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'option',
-                { value: '5' },
-                '5'
-              )
+              'p',
+              null,
+              'Entrez le nom de l\u2019\xE9tablissement recherch\xE9 :'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'form',
+              { method: 'post', action: '' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                type: 'text',
+                name: 'searchFormName',
+                onChange: this.handleInputChange
+              })
             )
           )
         ),
@@ -60220,13 +60241,16 @@ var Sidebar = function (_BaseContainer) {
     }
   }, {
     key: 'handleCloseClick',
-    value: function handleCloseClick(showForm) {
+    value: function handleCloseClick(showForm, form) {
       if (showForm) {
         document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
         document.getElementById('searchForm').className = 'searchForm searchForm_show';
+        document.getElementById(form).className = form + ' ' + form + '_show';
       } else {
         document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
         document.getElementById('searchForm').className = 'searchForm';
+        // document.getElementById('borough-form').className = 'borough-form'
+        // document.getElementById('name-form').className = 'name-form'
       }
     }
   }, {
@@ -60302,15 +60326,22 @@ var Sidebar = function (_BaseContainer) {
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
-              { className: 'sidebar-text sidebar-text_title' },
+              { className: 'sidebar-text sidebar-text_title sidebar_right-text_title' },
               'Crit\xE8re'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'span',
               { className: 'sidebar-text', onClick: function onClick() {
-                  _this2.handleCloseClick(true);
+                  return _this2.handleCloseClick(true, 'borough-form');
                 } },
               'Arrondissement'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              { className: 'sidebar-text', onClick: function onClick() {
+                  return _this2.handleCloseClick(true, 'name-form');
+                } },
+              'Nom'
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'sidebar-bottom' })

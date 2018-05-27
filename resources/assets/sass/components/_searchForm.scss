@@ -40,3 +40,37 @@
   opacity: 1;
   visibility: visible;
 }
+
+.borough-form {
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+
+.borough-form_show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.name-form {
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+
+.name-form_show {
+  opacity: 1;
+  visibility: visible;
+}

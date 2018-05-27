@@ -10,13 +10,16 @@ export default class Sidebar extends BaseContainer {
     document.getElementById('searchForm').className = 'searchForm'
   }
 
-  handleCloseClick (showForm) {
+  handleCloseClick (showForm, form) {
     if (showForm) {
       document.getElementById('sidebar_right').className = 'sidebar sidebar_right'
       document.getElementById('searchForm').className = 'searchForm searchForm_show'
+      document.getElementById(form).className = form + ' ' + form + '_show'
     } else {
       document.getElementById('sidebar_right').className = 'sidebar sidebar_right'
       document.getElementById('searchForm').className = 'searchForm'
+      // document.getElementById('borough-form').className = 'borough-form'
+      // document.getElementById('name-form').className = 'name-form'
     }
   }
 
@@ -38,8 +41,9 @@ export default class Sidebar extends BaseContainer {
         <div id='sidebar_right' className='sidebar sidebar_right'>
           <div className='sidebar-top'>
             <button className='myRoundButton myButton_red' onClick={() => { this.handleCloseClick(false) }}>&times;</button>
-            <span className='sidebar-text sidebar-text_title'>Critère</span>
-            <span className='sidebar-text' onClick={() => { this.handleCloseClick(true) }}>Arrondissement</span>
+            <span className='sidebar-text sidebar-text_title sidebar_right-text_title'>Critère</span>
+            <span className='sidebar-text' onClick={() => this.handleCloseClick(true, 'borough-form')}>Arrondissement</span>
+            <span className='sidebar-text' onClick={() => this.handleCloseClick(true, 'name-form')}>Nom</span>
           </div>
           <div className='sidebar-bottom' />
         </div>
