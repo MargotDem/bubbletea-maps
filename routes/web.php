@@ -29,3 +29,8 @@ Route::get('/', function () {
 
 Route::get('bubbleteas/average', 'BubbleTeasController@storeAverage');
 Route::get('bubbleteas', 'BubbleTeasController@store');
+
+
+Route::get('test/{bubbletea}', 'CommentsController@fetchComments');
+
+Route::get('comments', 'CommentsController@store');

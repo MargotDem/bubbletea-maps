@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import SearchForm from '../../components/SearchForm'
 import RateForm from './RateForm'
+import CommentForm from './CommentForm'
 
 export default class Bubbletea extends Component {
   constructor (props) {
@@ -15,10 +16,12 @@ export default class Bubbletea extends Component {
     })
     this.showRateForm = this.showRateForm.bind(this)
     this.fetchBubbleTea = this.fetchBubbleTea.bind(this)
+    this.fetchComments = this.fetchComments.bind(this)
   }
 
   componentDidMount () {
     this.fetchBubbleTea()
+    this.fetchComments()
   }
 
   initMap (bubbleTea) {
@@ -53,12 +56,25 @@ export default class Bubbletea extends Component {
     .catch(function (error) {
       console.log(error)
     }).then(() => {
-      let { bubbletea } = this.state
-      this.initMap({
-        info: bubbletea.name,
-        lat: bubbletea.latitude,
-        long: bubbletea.longitude
-      })
+      // let { bubbletea } = this.state
+      // this.initMap({
+      //   info: bubbletea.name,
+      //   lat: bubbletea.latitude,
+      //   long: bubbletea.longitude
+      // })
+    })
+  }
+
+  fetchComments () {
+    let pathname = this.props.location.pathname
+    let url = 'comments/' + pathname.substring(this.props.location.pathname.lastIndexOf('/') + 1)
+
+    axios.get('http://localhost:8888/public/api/' + url)
+    .then(comments => {
+      this.setState({ comments: comments.data })
+    })
+    .catch(function (error) {
+      console.log(error)
     })
   }
 
@@ -69,7 +85,7 @@ export default class Bubbletea extends Component {
   }
 
   render () {
-    let { bubbletea, showRateForm } = this.state
+    let { bubbletea, comments, showRateForm } = this.state
     return (
       <div className='mainContainer'>
         <SearchForm />
@@ -107,7 +123,24 @@ export default class Bubbletea extends Component {
               </div>
             </div>
           </div>
-          <div className='comments' />
+          <div className='bbtComments'>
+            <div className='comment'>
+              <CommentForm
+                bubbleTeaId={bubbletea.id}
+                fetchComments={this.fetchComments}
+              />
+            </div>
+            {
+              comments !== undefined && comments.map((item, index) => {
+                return (
+                  <div key={index} className='comment'>
+                    <h6><span className='comment-author'>{item.author_name}</span>&nbsp;<span className='comment-date'>&bull;&nbsp;{item.created_at}</span></h6>
+                    {item.text}
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     )

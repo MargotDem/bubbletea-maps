@@ -27,6 +27,10 @@ Route::put('bubbleteas', 'BubbleTeasController@store');
 
 Route::put('bubbleteas/average', 'BubbleTeasController@storeAverage');
 
+Route::get('comments/{bubbletea}', 'CommentsController@fetchComments');
+
+Route::post('comments', 'CommentsController@store');
+
 // Route::post('bubbleteas','BubbleTeasController@store');
 //
 // Route::put('bubbleteas/{bubbletea}','BubbleTeasController@update');

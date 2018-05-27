@@ -122,4 +122,13 @@ class BubbleTeasController extends Controller
     $bubbletea->delete();
     return response()->json(null, 204);
   }
+
+  public function fetchComments(BubbleTea $bubbletea)
+  {
+    // $bubbletea->delete();
+    // return response()->json(null, 204);
+    // return $bubbletea;
+    // return BubbleTea::fetchComments($bubbletea);
+    return 'hola';
+  }
 }
