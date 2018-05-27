@@ -105,10 +105,11 @@ class BubbleTeasController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, BubbleTea $bubbletea)
+  public function update(Request $request)
   {
-    $bubbletea->update($request->all());
-    return response()->json($bubbletea, 200);
+    $bubbletea = BubbleTea::edit($request->all());
+
+    return $bubbletea;
   }
 
   /**

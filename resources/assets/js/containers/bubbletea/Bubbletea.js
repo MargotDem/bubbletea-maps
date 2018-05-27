@@ -7,6 +7,7 @@ import { withCookies } from 'react-cookie'
 import SearchForm from '../../components/SearchForm'
 import RateForm from './RateForm'
 import CommentForm from './CommentForm'
+import EditForm from './EditForm'
 
 class Bubbletea extends Component {
   constructor (props) {
@@ -18,6 +19,7 @@ class Bubbletea extends Component {
     this.showRateForm = this.showRateForm.bind(this)
     this.fetchBubbleTea = this.fetchBubbleTea.bind(this)
     this.fetchComments = this.fetchComments.bind(this)
+    this.showEditForm = this.showEditForm.bind(this)
   }
 
   componentDidMount () {
@@ -62,12 +64,12 @@ class Bubbletea extends Component {
     .catch(function (error) {
       console.log(error)
     }).then(() => {
-      // let { bubbletea } = this.state
-      // this.initMap({
-      //   info: bubbletea.name,
-      //   lat: bubbletea.latitude,
-      //   long: bubbletea.longitude
-      // })
+      let { bubbletea } = this.state
+      this.initMap({
+        info: bubbletea.name,
+        lat: bubbletea.latitude,
+        long: bubbletea.longitude
+      })
     })
   }
 
@@ -102,12 +104,25 @@ class Bubbletea extends Component {
     }
   }
 
+  showEditForm (showForm) {
+    this.setState({
+      showEditForm: showForm
+    })
+  }
+
   render () {
-    let { bubbletea, comments, showRateForm, isAdminLogged } = this.state
+    let { bubbletea, comments, showRateForm, isAdminLogged, showEditForm } = this.state
     return (
       <div className='mainContainer'>
         <SearchForm />
         <div className='bubbleteaContainer'>
+          {
+            showEditForm && <EditForm
+              showEditForm={this.showEditForm}
+              bubbleTeaId={bubbletea.id}
+              fetchBubbleTea={this.fetchBubbleTea}
+            />
+          }
           <div className='bbtMap' id='map' />
           <div className='bbtContent'>
             <div className='bbtPic'>
@@ -120,7 +135,17 @@ class Bubbletea extends Component {
                 <div className='bbtDetails'>
                   <span>{bubbletea.address}</span>
                   <span>{bubbletea.phone}</span>
-                  <span>{bubbletea.price_range}</span>
+                  <br />
+                  {
+                    bubbletea.open_times && <span>
+                      Horaires: {bubbletea.open_times}
+                    </span>
+                  }
+                  {
+                    bubbletea.price_range && <span>
+                      Prix: {bubbletea.price_range}
+                    </span>
+                  }
                 </div>
               </div>
               <div className='bbtInfos-right'>
@@ -142,7 +167,7 @@ class Bubbletea extends Component {
                   isAdminLogged && <div>
                     <span className='delete-button' onClick={() => this.delete(bubbletea.id)}>Delete</span>
                     <br />
-                    <span className='edit-button'>Edit</span>
+                    <span className='edit-button' onClick={() => this.showEditForm(true)}>Edit</span>
                   </div>
                 }
               </div>

@@ -63021,6 +63021,7 @@ var SearchResult = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SearchForm__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RateForm__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CommentForm__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__EditForm__ = __webpack_require__(166);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63030,6 +63031,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /* global google */
+
 
 
 
@@ -63054,6 +63056,7 @@ var Bubbletea = function (_Component) {
     _this.showRateForm = _this.showRateForm.bind(_this);
     _this.fetchBubbleTea = _this.fetchBubbleTea.bind(_this);
     _this.fetchComments = _this.fetchComments.bind(_this);
+    _this.showEditForm = _this.showEditForm.bind(_this);
     return _this;
   }
 
@@ -63104,12 +63107,13 @@ var Bubbletea = function (_Component) {
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
-        // let { bubbletea } = this.state
-        // this.initMap({
-        //   info: bubbletea.name,
-        //   lat: bubbletea.latitude,
-        //   long: bubbletea.longitude
-        // })
+        var bubbletea = _this2.state.bubbletea;
+
+        _this2.initMap({
+          info: bubbletea.name,
+          lat: bubbletea.latitude,
+          long: bubbletea.longitude
+        });
       });
     }
   }, {
@@ -63149,6 +63153,13 @@ var Bubbletea = function (_Component) {
       }
     }
   }, {
+    key: 'showEditForm',
+    value: function showEditForm(showForm) {
+      this.setState({
+        showEditForm: showForm
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this4 = this;
@@ -63157,7 +63168,8 @@ var Bubbletea = function (_Component) {
           bubbletea = _state.bubbletea,
           comments = _state.comments,
           showRateForm = _state.showRateForm,
-          isAdminLogged = _state.isAdminLogged;
+          isAdminLogged = _state.isAdminLogged,
+          showEditForm = _state.showEditForm;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -63166,6 +63178,11 @@ var Bubbletea = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { className: 'bubbleteaContainer' },
+          showEditForm && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__EditForm__["a" /* default */], {
+            showEditForm: this.showEditForm,
+            bubbleTeaId: bubbletea.id,
+            fetchBubbleTea: this.fetchBubbleTea
+          }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bbtMap', id: 'map' }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -63204,9 +63221,17 @@ var Bubbletea = function (_Component) {
                     null,
                     bubbletea.phone
                   ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                  bubbletea.open_times && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'span',
                     null,
+                    'Horaires: ',
+                    bubbletea.open_times
+                  ),
+                  bubbletea.price_range && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    null,
+                    'Prix: ',
                     bubbletea.price_range
                   )
                 )
@@ -63243,7 +63268,9 @@ var Bubbletea = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'span',
-                    { className: 'edit-button' },
+                    { className: 'edit-button', onClick: function onClick() {
+                        return _this4.showEditForm(true);
+                      } },
                     'Edit'
                   )
                 )
@@ -64597,6 +64624,202 @@ var Scroller = Object(__WEBPACK_IMPORTED_MODULE_1_react_router__["a" /* withRout
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var AddForm = function (_Component) {
+  _inherits(AddForm, _Component);
+
+  function AddForm(props) {
+    _classCallCheck(this, AddForm);
+
+    var _this = _possibleConstructorReturn(this, (AddForm.__proto__ || Object.getPrototypeOf(AddForm)).call(this, props));
+
+    _this.state = {};
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
+    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+    return _this;
+  }
+
+  _createClass(AddForm, [{
+    key: 'handleSubmit',
+    value: function handleSubmit() {
+      var _props = this.props,
+          bubbleTeaId = _props.bubbleTeaId,
+          showEditForm = _props.showEditForm,
+          fetchBubbleTea = _props.fetchBubbleTea;
+
+      var bubbletea = _extends({}, this.state, { id: bubbleTeaId });
+      var url = '/public/api/bubbleteas/' + bubbleTeaId;
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put(url, bubbletea).then(function (response) {
+        console.log(response);
+        showEditForm(false);
+        fetchBubbleTea();
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'handleInputChange',
+    value: function handleInputChange(e) {
+      var field = e.target.name;
+      var value = e.target.value;
+      this.setState(_defineProperty({}, field, value));
+    }
+  }, {
+    key: 'handleKeyPress',
+    value: function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.handleSubmit();
+      }
+    }
+  }, {
+    key: 'handleCloseClick',
+    value: function handleCloseClick() {
+      this.props.showEditForm(false);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'addForm' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { className: 'myRoundButton myButton_red', onClick: function onClick() {
+              _this2.handleCloseClick(false);
+            } },
+          '\xD7'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'form',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'name',
+            placeholder: 'Nom',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.name
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'address',
+            placeholder: 'Adresse',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.adress
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'phone',
+            placeholder: 'T\xE9l\xE9phone',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.phone
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'open_times',
+            placeholder: 'Horaires',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.open_times
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'additional_info',
+            placeholder: 'Autre(s) info(s)',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.additional_info
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'longitude',
+            placeholder: 'Longitude',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.longitude
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'latitude',
+            placeholder: 'Latitude',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.latitude
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'borough',
+            placeholder: 'Arrondissement',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.borough
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'price_range',
+            placeholder: 'Prix',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.price_range
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+            type: 'text',
+            name: 'pic_link',
+            placeholder: 'Lien photo',
+            onChange: this.handleInputChange,
+            onKeyPress: this.handleKeyPress,
+            value: this.state.pic_link
+          }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { onClick: function onClick() {
+                _this2.handleSubmit();
+              } },
+            'Edit'
+          )
+        )
+      );
+    }
+  }]);
+
+  return AddForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (AddForm);
 
 /***/ })
 /******/ ]);

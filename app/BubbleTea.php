@@ -30,6 +30,18 @@ class BubbleTea extends Model
       return 'ok';
     }
 
+    public static function edit($values)
+    {
+      $bubbletea = BubbleTea::find($values['id']);
+
+      foreach ($values as $key => $value) {
+        $bubbletea->$key = $value;
+      }
+      $bubbletea->save();
+
+      return $bubbletea;
+    }
+
     public static function storeAverage($id, $global_note, $note_votes)
     {
       $bubbletea = BubbleTea::find($id);

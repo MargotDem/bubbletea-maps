@@ -23,6 +23,8 @@ Route::get('bubbleteas/{bubbletea}', 'BubbleTeasController@show');
 
 Route::delete('bubbleteas/{bubbletea}', 'BubbleTeasController@destroy');
 
+Route::put('bubbleteas/{bubbletea}', 'BubbleTeasController@update');
+
 Route::post('admin', 'AdminController@logIn');
 
 Route::put('bubbleteas', 'BubbleTeasController@store');
