@@ -140,6 +140,44 @@
   left: 100%;
 }
 
+@media (min-width: 769px) {
+  .sidebar-BubbleTeaMaps-mobile,
+  .sidebar-search-mobile,
+  .sidebar-mdm-mobile,
+  .sidebar-contact-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-BubbleTeaMaps-desktop,
+  .sidebar-search-desktop,
+  .sidebar-mdm-desktop,
+  .sidebar-contact-desktop {
+    display: none !important;
+  }
+
+  .sidebar {
+    padding: 10px 15px !important;
+  }
+
+  .sidebar span {
+    font-size: 15px !important;
+  }
+
+  .sidebar_right {
+    width: 0%;
+  }
+
+  .sidebar_right .myRoundButton {
+    bottom: 0px !important;
+  }
+
+  .sidebar_right_show {
+    width: 340%;
+  }
+}
+
 .myButton {
   border-radius: 4px;
   height: 40px;
@@ -295,19 +333,33 @@
   visibility: visible;
 }
 
+@media (max-width: 768px) {
+  .searchForm {
+    width: 75% !important;
+  }
+
+  .searchForm section {
+    margin-top: 50px !important;
+  }
+
+  .searchForm p {
+    font-size: 16px !important;
+  }
+}
+
 .appContainer {
   width: 100%;
 }
 
 .sidebarContainer {
-  width: 17%;
+  width: 20%;
   float: left;
   height: 100vh;
   position: relative;
 }
 
 .mainContainer {
-  width: 83%;
+  width: 80%;
   float: right;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -318,6 +370,36 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 1440px) {
+  .sidebarContainer {
+    width: 20%;
+  }
+
+  .mainContainer {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebarContainer {
+    width: 25%;
+  }
+
+  .mainContainer {
+    width: 75%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebarContainer {
+    width: 12%;
+  }
+
+  .mainContainer {
+    width: 88%;
+  }
 }
 
 .homeContainer {
@@ -344,6 +426,12 @@
   font-size: 4.5rem;
   font-family: "Roboto Slab", serif;
   text-shadow: 0 2px 18px rgba(34, 34, 34, 0.6);
+}
+
+@media (max-width: 768px) {
+  .homeMessage {
+    font-size: 2.5rem;
+  }
 }
 
 .searchResultContainer {
@@ -438,7 +526,6 @@
 
 .searchResultContainer .results .bbtCard .bbtPic {
   height: 60%;
-  width: 200;
 }
 
 .searchResultContainer .results .bbtCard .bbtPic img {
@@ -485,27 +572,26 @@
 }
 
 .bubbleteaContainer .bbtContent .bbtPic {
-  width: 40%;
   height: 100%;
-  float: left;
+  width: 40%;
+  overflow: hidden;
 }
 
 .bubbleteaContainer .bbtContent .bbtPic img {
-  width: 100%;
   height: 100%;
+  width: auto;
 }
 
 .bubbleteaContainer .bbtContent .bbtInfos {
   width: 60%;
   height: 100%;
-  float: right;
 }
 
 .bubbleteaContainer .bbtContent .bbtInfos-left {
   width: 65%;
   height: 100%;
   float: left;
-  padding: 30px 60px;
+  padding: 20px 40px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -622,6 +708,83 @@ delete and edit buttons
 .delete-button:hover,
 .edit-button:hover {
   cursor: pointer;
+}
+
+/* responsive */
+
+@media (max-width: 1024px) {
+  .bbtInfos-left {
+    padding: 10px 20px !important;
+  }
+
+  .bbtInfos-left .bbtName {
+    font-size: 24px !important;
+    color: #ff4454;
+    margin-bottom: 10px !important;
+  }
+
+  .bbtInfos-left .bbtCom {
+    font-size: 16px;
+    margin-bottom: 15px !important;
+  }
+
+  .bbtInfos-right {
+    width: 35%;
+    height: 100%;
+    float: right;
+    color: #404040;
+    padding: 17px 30px 0px 0px !important;
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .bbtInfos {
+    float: right;
+  }
+
+  .bbtContent .bbtPic {
+    float: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .bbtInfos {
+    float: right;
+    width: 100% !important;
+    height: 100%;
+  }
+
+  .bbtContent .bbtPic {
+    float: left;
+    width: 100% !important;
+    height: 250px !important;
+  }
+
+  .bbtContent .bbtPic img {
+    width: 100% !important;
+  }
+
+  .bbtMap {
+    height: 100px !important;
+  }
+
+  .bbtContent {
+    height: 70% !important;
+    width: 100%;
+  }
+
+  .bbtComments {
+    width: 100% !important;
+  }
+
+  .bbtInfos {
+    height: 70% !important;
+  }
+
+  .comment {
+    width: 70%;
+  }
 }
 
 .adminContainer {

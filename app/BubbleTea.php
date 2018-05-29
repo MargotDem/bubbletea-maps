@@ -37,8 +37,8 @@ class BubbleTea extends Model
       foreach ($values as $key => $value) {
         $bubbletea->$key = $value;
       }
-      $bubbletea->save();
 
+      $bubbletea->save();
       return $bubbletea;
     }
 

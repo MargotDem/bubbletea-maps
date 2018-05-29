@@ -1,11 +1,6 @@
 .bubbleteaContainer {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: baseline;
-  // align-items: center;
   height: 100vh;
   width: 100%;
-  // position: relative;
   background: whitesmoke;
   overflow-y: scroll;
 
@@ -22,26 +17,25 @@
     box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.2);
 
     .bbtPic {
-      width: 40%;
       height: 100%;
-      float: left;
+      width: 40%;
+      overflow: hidden;
     }
 
     .bbtPic img {
-      width: 100%;
       height: 100%;
+      width: auto;
     }
 
     .bbtInfos {
       width: 60%;
       height: 100%;
-      float: right;
 
       &-left {
         width: 65%;
         height: 100%;
         float: left;
-        padding: 30px 60px;
+        padding: 20px 40px;
         font-family: $text-font;
 
         .bbtName {
@@ -69,7 +63,6 @@
         width: 35%;
         height: 100%;
         float: right;
-        // background: green;
         color: #404040;
         padding: 50px 60px 30px 60px;
         font-size: 30px;
@@ -154,4 +147,89 @@ delete and edit buttons
 
 .delete-button:hover, .edit-button:hover {
   cursor: pointer;
+}
+
+/* responsive */
+
+@media(max-width: 1024px) {
+  .bbtInfos {
+
+    &-left {
+      padding: 10px 20px !important;
+
+      .bbtName {
+        font-size: 24px !important;
+        color: $main-red;
+        margin-bottom: 10px !important;
+      }
+
+      .bbtCom {
+        font-size: 16px;
+        margin-bottom: 15px !important;
+      }
+    }
+
+    &-right {
+      width: 35%;
+      height: 100%;
+      float: right;
+      color: #404040;
+      padding: 17px 30px 0px 0px !important;
+      font-size: 18px !important;
+    }
+  }
+}
+
+
+@media (min-width: 769px) {
+  .bbtInfos {
+    float: right;
+  }
+.bbtContent {
+  .bbtPic {
+    float: left;
+  }
+}  
+}
+
+@media(max-width: 768px) {
+  .bbtInfos {
+    float: right;
+    width: 100% !important;
+    height: 100%;
+  }
+
+  .bbtContent {
+    .bbtPic {
+      float: left;
+      width: 100% !important;
+      height: 250px !important;
+
+      img {
+        width: 100% !important;
+      }
+    }
+  }
+
+
+  .bbtMap {
+    height: 100px !important;
+  }
+
+  .bbtContent {
+    height: 70% !important;
+    width: 100%;
+  }
+
+  .bbtComments {
+    width: 100% !important;
+  }
+
+  .bbtInfos {
+    height: 70% !important;
+  }
+
+  .comment {
+    width: 70%;
+  }
 }

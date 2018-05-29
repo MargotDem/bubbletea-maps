@@ -63,7 +63,8 @@ class Bubbletea extends Component {
     })
     .catch(function (error) {
       console.log(error)
-    }).then(() => {
+    })
+    .then(() => {
       let { bubbletea } = this.state
       this.initMap({
         info: bubbletea.name,

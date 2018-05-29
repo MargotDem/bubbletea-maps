@@ -18,7 +18,6 @@ class BubbleTeasController extends Controller
       return BubbleTea::all();
     } else {
       return BubbleTea::findByBorough($request->input('borough'));
-
     }
   }
 

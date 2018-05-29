@@ -43,7 +43,7 @@ export default class SearchResult extends Component {
                     </div>
                     <div className='bbtInfo'>
                       <div className='bbtName'>{bubbletea.name}</div>
-                      <div>Note : {Math.round(bubbletea.global_note * 10) / 10}</div>
+                      <div>Note : {Math.round(bubbletea.global_note * 10) / 10}/10</div>
                       <div>{bubbletea.address}</div>
                     </div>
                   </NavLink>

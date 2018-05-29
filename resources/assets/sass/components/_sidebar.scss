@@ -95,3 +95,34 @@
 .sidebar_right_show {
   left: 100%;
 }
+
+@media (min-width: 769px) {
+  .sidebar-BubbleTeaMaps-mobile, .sidebar-search-mobile, .sidebar-mdm-mobile, .sidebar-contact-mobile {
+    display: none !important;
+  }
+}
+
+@media(max-width: 768px) {
+  .sidebar-BubbleTeaMaps-desktop, .sidebar-search-desktop, .sidebar-mdm-desktop, .sidebar-contact-desktop {
+    display: none !important;
+  }
+
+  .sidebar {
+    padding: 10px 15px!important;
+    span {
+      font-size: 15px !important;
+    }
+  }
+
+  .sidebar_right {
+    width: 0%;
+
+    .myRoundButton {
+      bottom: 0px !important;
+    }
+  }
+
+  .sidebar_right_show {
+    width: 340%;
+  }
+}

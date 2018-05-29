@@ -3,16 +3,46 @@
 }
 
 .sidebarContainer {
-  width: 17%;
+  width: 20%;
   float: left;
   height: 100vh;
   position: relative;
 }
 
 .mainContainer {
-  width: 83%;
+  width: 80%;
   float: right;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media(max-width: 1440px) {
+  .sidebarContainer {
+    width: 20%;
+  }
+
+  .mainContainer {
+    width: 80%;
+  }
+}
+
+@media(max-width: 1024px) {
+  .sidebarContainer {
+    width: 25%;
+  }
+
+  .mainContainer {
+    width: 75%;
+  }
+}
+
+@media(max-width: 768px) {
+  .sidebarContainer {
+    width: 12%;
+  }
+
+  .mainContainer {
+    width: 88%;
+  }
 }
