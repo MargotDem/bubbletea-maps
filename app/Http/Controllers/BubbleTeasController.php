@@ -28,7 +28,7 @@ class BubbleTeasController extends Controller
    */
   public function test(Request $request)
   {
-    return "holaaa";
+    return "ok";
   }
 
   /**
@@ -49,18 +49,6 @@ class BubbleTeasController extends Controller
    */
   public function store(Request $request)
   {
-    // $this->validate($request, [
-    //   'name' => 'required|max:50',
-    //   'address' => 'required|100',
-    //   'phone' => '14',
-    //   'open_times' => '255',
-    //   'additional_info' => '255',
-    //   'longitude' => 'numeric',
-    //   'latitude' => 'numeric',
-    //   'borough' => 'required|integer',
-    //   'price_range' => '50'
-    // ]);
-
     $bubbletea = BubbleTea::store($request->all());
 
     return $bubbletea;
@@ -125,10 +113,6 @@ class BubbleTeasController extends Controller
 
   public function fetchComments(BubbleTea $bubbletea)
   {
-    // $bubbletea->delete();
-    // return response()->json(null, 204);
-    // return $bubbletea;
-    // return BubbleTea::fetchComments($bubbletea);
-    return 'hola';
+    return 'ok';
   }
 }
