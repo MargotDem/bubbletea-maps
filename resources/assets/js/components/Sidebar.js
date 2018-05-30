@@ -4,25 +4,36 @@ import BaseContainer from '../containers/BaseContainer'
 import { NavLink } from 'react-router-dom'
 
 export default class Sidebar extends BaseContainer {
-  handleOpenClick () {
-    document.getElementById('sidebar_right').className = 'sidebar sidebar_right sidebar_right_show'
-    document.getElementById('searchForm').className = 'searchForm'
+  constructor (props) {
+    super(props)
+    this.state = ({
+      showRightSidebar: false
+    })
+    this.handleOpenClick = this.handleOpenClick.bind(this)
+    this.handleCloseClick = this.handleCloseClick.bind(this)
   }
 
   handleCloseClick (showForm, form) {
+    this.setState({
+      showRightSidebar: false
+    })
     if (showForm) {
-      document.getElementById('sidebar_right').className = 'sidebar sidebar_right'
       document.getElementById('searchForm').className = 'searchForm searchForm_show'
       document.getElementById(form).className = form + ' ' + form + '_show'
     } else {
-      document.getElementById('sidebar_right').className = 'sidebar sidebar_right'
       document.getElementById('searchForm').className = 'searchForm'
-      // document.getElementById('borough-form').className = 'borough-form'
-      // document.getElementById('name-form').className = 'name-form'
     }
   }
 
+  handleOpenClick () {
+    this.setState({
+      showRightSidebar: true
+    })
+    document.getElementById('searchForm').className = 'searchForm'
+  }
+
   renderMe (t) {
+    let { showRightSidebar } = this.state
     return (
       <div className='sidebarContainer'>
         <div className='sidebar'>
@@ -55,15 +66,12 @@ export default class Sidebar extends BaseContainer {
             </span>
           </div>
         </div>
-        <div id='sidebar_right' className='sidebar sidebar_right'>
+        <div id='sidebar_right' className={'sidebar sidebar_right' + (showRightSidebar ? ' sidebar_right_show' : '')}>
           <div className='sidebar-top'>
             <button className='myRoundButton myButton_red' onClick={() => { this.handleCloseClick(false) }}>&times;</button>
             <span className='sidebar-text sidebar-text_title sidebar_right-text_title'>Critère</span>
             <span className='sidebar-text' onClick={() => this.handleCloseClick(true, 'borough-form')}>
               Arrondissement
-            </span>
-            <span className='sidebar-text' onClick={() => this.handleCloseClick(true, 'name-form')}>
-              Nom
             </span>
           </div>
           <div className='sidebar-bottom' />

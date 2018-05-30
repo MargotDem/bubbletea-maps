@@ -60221,36 +60221,46 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Sidebar = function (_BaseContainer) {
   _inherits(Sidebar, _BaseContainer);
 
-  function Sidebar() {
+  function Sidebar(props) {
     _classCallCheck(this, Sidebar);
 
-    return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
+
+    _this.state = {
+      showRightSidebar: false
+    };
+    _this.handleOpenClick = _this.handleOpenClick.bind(_this);
+    _this.handleCloseClick = _this.handleCloseClick.bind(_this);
+    return _this;
   }
 
   _createClass(Sidebar, [{
-    key: 'handleOpenClick',
-    value: function handleOpenClick() {
-      document.getElementById('sidebar_right').className = 'sidebar sidebar_right sidebar_right_show';
-      document.getElementById('searchForm').className = 'searchForm';
-    }
-  }, {
     key: 'handleCloseClick',
     value: function handleCloseClick(showForm, form) {
+      this.setState({
+        showRightSidebar: false
+      });
       if (showForm) {
-        document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
         document.getElementById('searchForm').className = 'searchForm searchForm_show';
         document.getElementById(form).className = form + ' ' + form + '_show';
       } else {
-        document.getElementById('sidebar_right').className = 'sidebar sidebar_right';
         document.getElementById('searchForm').className = 'searchForm';
-        // document.getElementById('borough-form').className = 'borough-form'
-        // document.getElementById('name-form').className = 'name-form'
       }
+    }
+  }, {
+    key: 'handleOpenClick',
+    value: function handleOpenClick() {
+      this.setState({
+        showRightSidebar: true
+      });
+      document.getElementById('searchForm').className = 'searchForm';
     }
   }, {
     key: 'renderMe',
     value: function renderMe(t) {
       var _this2 = this;
+
+      var showRightSidebar = this.state.showRightSidebar;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -60343,7 +60353,7 @@ var Sidebar = function (_BaseContainer) {
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { id: 'sidebar_right', className: 'sidebar sidebar_right' },
+          { id: 'sidebar_right', className: 'sidebar sidebar_right' + (showRightSidebar ? ' sidebar_right_show' : '') },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'sidebar-top' },
@@ -60365,13 +60375,6 @@ var Sidebar = function (_BaseContainer) {
                   return _this2.handleCloseClick(true, 'borough-form');
                 } },
               'Arrondissement'
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'span',
-              { className: 'sidebar-text', onClick: function onClick() {
-                  return _this2.handleCloseClick(true, 'name-form');
-                } },
-              'Nom'
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'sidebar-bottom' })
